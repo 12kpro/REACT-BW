@@ -10,7 +10,7 @@ const AsideCard = ({ username, title, image }) => {
           <p className="m-0 small ">{title}</p>
         </Link>
         <button className="btn btn-outline-secondary rounded-pill mt-4">
-          <i className="bi bi-person-plus-fill"></i>
+          <i className="bi bi-person-plus-fill pe-2"></i>
           Collegati
         </button>
       </div>
