@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const UserMainCard = () => {
+const UserMainCard = ({ button }) => {
   return (
     <div className="slider-item position-relative p-3 border rounded">
       <div className="pe-4">
@@ -8,7 +8,14 @@ const UserMainCard = () => {
           <strong>Special title treatment:</strong> With supporting text below as a natural lead-in to additional
           content.
         </p>
-        <Link to="/">Inizia</Link>
+        {button.type === "button" ? (
+          <button className="btn btn-outline-secondary rounded-pill mt-4">
+            {button.icon ? <i className={`bi ${button.icon}`}></i> : ""}
+            {button.txt}
+          </button>
+        ) : (
+          <Link to="/">{button.txt}</Link>
+        )}
       </div>
       <button className="btn btn-close position-absolute top-0 end-0 mt-3 me-3"></button>
     </div>

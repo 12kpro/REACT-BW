@@ -8,6 +8,29 @@ export const addFavouritesIdAction = (id) => ({ type: ADD_FAVOURITES_ID, payload
 export const isPlayAction = (track) => ({ type: IS_PLAY, payload: track });
 */
 export const ADD_USER_DATA = "ADD_USER_DATA";
+export const ADD_USERS = "ADD_USERS";
+
+export const addUsers = () => {
+  return async (dispatch) => {
+    try {
+      let resp = await fetch(BASE_URL, {
+        headers: {
+          Authorization: AUTHORIZATION
+        }
+      });
+      if (resp.ok) {
+        let data = await resp.json();
+        data = data.slice(0, 10);
+        dispatch({ type: ADD_USERS, payload: data });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  };
+};
 
 export const addUserData = () => {
   return async (dispatch) => {
