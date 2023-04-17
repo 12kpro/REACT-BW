@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Home from "./components/Home";
 import SiteNav from "./components/SiteNav";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
