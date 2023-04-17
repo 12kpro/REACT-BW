@@ -1,5 +1,5 @@
 const BASE_URL = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
-const API_KEY = process.env.REACT_APP_API_KEY;
+const AUTHORIZATION = `Bearer ${process.env.REACT_APP_API_KEY}`;
 /*
 export const CREATE_PLAYLIST = "CREATE_PLAYLIST";
 export const DELETE_PLAYLIST = "DELETE_PLAYLIST";
