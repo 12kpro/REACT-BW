@@ -7,7 +7,7 @@ import CardListItem from "./homeMain/CardListItem";
 import { Link } from "react-router-dom";
 import CardSlider from "./homeMain/CardSlider";
 import AsideBox from "./aside/AsideBox";
-
+import { suggestedCards } from "../helpers/cards";
 const Home = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
@@ -27,7 +27,7 @@ const Home = () => {
       className="container"
       style={{
         marginTop: "50px",
-        marginLeft: "31px",
+        marginLeft: "31px"
         /* paddingRight: "300px", */
       }}
     >
@@ -106,7 +106,7 @@ const Home = () => {
             <div className="card mt-2">
               <div className="card-body">
                 <CardTitle title="Consigliato per te" />
-                <CardSlider />
+                <CardSlider cards={suggestedCards} />
               </div>
             </div>
             <div className="card mt-2">
