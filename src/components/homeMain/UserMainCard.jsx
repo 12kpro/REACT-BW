@@ -10,10 +10,10 @@ const UserMainCard = ({ card }) => {
         {card.button.type === "button" ? (
           <button className="btn btn-outline-secondary rounded-pill mt-4" {...card.button.modal}>
             {card.button.icon ? <i className={`bi ${card.button.icon}`}></i> : ""}
-            {card.button.btnTxt}
+            {card.button.btnText}
           </button>
         ) : (
-          <Link to="/">{card.button.btnTxt}</Link>
+          <Link to="/">{card.button.btnText}</Link>
         )}
       </div>
       <button className="btn btn-close position-absolute top-0 end-0 mt-1 me-2"></button>
