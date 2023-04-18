@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 const SiteNav = () => {
   return (
-    <div className="fixed-top bg-white border-bottom">
-      <div className="d-flex align-items-center justify-content-center my-0">
+    <div className="fixed-top bg-white border-bottom " style={{ height: "52px" }}>
+      <div className="d-flex align-items-center justify-content-center mt-0">
         <Link className="text-decoration-none" to="/">
           <div className="my-0 mx-2">
             <div className="d-flex ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="41px"
-                height="41px"
+                width="36px"
+                height="33px"
                 fill="#0a66c2"
                 class="bi bi-linkedin"
                 viewBox="0 0 16 16"
@@ -19,7 +19,7 @@ const SiteNav = () => {
             </div>
           </div>
         </Link>
-        <div className="position-relative">
+        <div className="position-relative" style={{ paddingRight: "110px" }}>
           <input
             className="border border-0 rounded"
             type="text"
@@ -52,7 +52,7 @@ const SiteNav = () => {
           <ul className="d-flex mt-1">
             <li className="d-flex me-5">
               <Link className="text-decoration-none" to="/">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -71,7 +71,7 @@ const SiteNav = () => {
             </li>
             <li className="d-flex me-5">
               <Link className="text-decoration-none" to="/">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -88,9 +88,9 @@ const SiteNav = () => {
                 <p style={{ color: "#666", fontSize: "small" }}>Rete</p>
               </Link>
             </li>
-            <li className="d-flex me-5">
+            <li className="d-flex me-4">
               <Link className="text-decoration-none" to="/">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -107,9 +107,9 @@ const SiteNav = () => {
                 <p style={{ color: "#666", fontSize: "small" }}>Lavoro</p>
               </Link>
             </li>
-            <li className="d-flex me-5">
+            <li className="d-flex me-4">
               <Link className="text-decoration-none" to="/">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -126,9 +126,9 @@ const SiteNav = () => {
                 <p style={{ color: "#666", fontSize: "small" }}>Messagistica</p>
               </Link>
             </li>
-            <li className="d-flex me-5">
+            <li className="d-flex me-4">
               <Link className="text-decoration-none" to="/">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -147,11 +147,11 @@ const SiteNav = () => {
             </li>
             <li className="d-flex border-end me-3" style={{ height: "48px" }}>
               <Link className="text-decoration-none" to="/">
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center pt-1">
                   <button className="bg-transparent border border-0 pe-4">
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
-                      className="rounded-circle"
+                      className="rounded-circle mb-0"
                       style={{ height: "24px", width: "24px" }}
                     />
                     <p style={{ color: "#666", fontSize: "small" }}>
