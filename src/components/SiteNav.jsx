@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const SiteNav = () => {
   return (
-    <div className="fixed-top bg-white border-bottom " style={{ height: "52px" }}>
+    <div className="fixed-top bg-white border-bottom " style={{ height: "55px" }}>
       <div className="d-flex align-items-center justify-content-center mt-0">
         <Link className="text-decoration-none" to="/">
           <div className="my-0 mx-2">

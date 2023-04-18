@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="my-3 mb-0 container">
       <div>
         <div className="row">
-          <div className="col-1"></div>
+          <div className="col-1" style={{ width: "6%" }}></div>
           <div className="col-2 text-start pe-0 ps-0">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
