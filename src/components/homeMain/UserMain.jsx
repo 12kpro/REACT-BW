@@ -2,9 +2,32 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserMainCard from "./UserMainCard";
 import CardSlider from "./CardSlider";
+import ExperiencesModal from "./ExperiencesModal";
 
 const UserMain = () => {
   const userData = useSelector((state) => state.userData);
+  const cards = [
+    {
+      title: { txt: "Mostra ai recruiter che sei disponibile a lavorare", icon: false },
+      text: ": sei tu che decidi chi può vedere questa informazione.",
+      button: { type: "link", icon: false, btnText: "Inizia" }
+    },
+    {
+      title: { txt: "Fai sapere che stai facendo selezione", icon: false },
+      text: ": e attrai candidati qualificati.",
+      button: { type: "link", icon: false, btnText: "Inizia" }
+    },
+    {
+      title: { txt: "Metti in risalto i servizi", icon: false },
+      text: ": che offri, così tu e la tua azienda potrete apparire nei risultati di ricerca.",
+      button: {
+        type: "link",
+        icon: false,
+        btnText: "Inizia",
+        modal: { "data-bs-toggle": "modal", "data-bs-target": "#exampleModal" }
+      }
+    }
+  ];
   return (
     <>
       {userData && (
@@ -55,9 +78,10 @@ const UserMain = () => {
                 <button className="btn btn-outline-primary rounded-pill mx-2">Aggiungi sezione profilo</button>
                 <button className="btn btn-outline-secondary rounded-pill">Altro</button>
               </div>
-              <CardSlider />
+              <CardSlider cards={cards} />
             </div>
           </div>
+          <ExperiencesModal />
         </div>
       )}
     </>
