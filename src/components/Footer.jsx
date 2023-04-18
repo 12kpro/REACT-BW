@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="my-3 container">
+    <footer className="my-3 mb-0 container">
       <div>
         <div className="row">
-          <div className="col  text-start">
+          <div className="col text-start pe-0 ps-0">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
                 Informazioni
@@ -63,7 +63,7 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <div className="col">
+          <div className="col pe-0 ps-0">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
                 Accessibilità
@@ -85,7 +85,7 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <div class="col">
+          <div class="col pe-0 ps-0">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
                 Talent Solutions
@@ -107,7 +107,7 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <div className="col">
+          <div className="col pe-0 ps-0">
             <div className="d-flex">
               <div className="me-2 mt-2">
                 <svg
@@ -173,7 +173,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="col fw-light copyright">
+          <div className="col fw-light copyright pe-0 ps-0">
             <div>
               <p>Seleziona lingua</p>
               <div className="btn-group">
