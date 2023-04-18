@@ -27,8 +27,6 @@ export const getUserExperiences = (userId) => {
       if (resp.ok) {
         let data = await resp.json();
         console.log(data);
-        //data = data.slice(0, 10);
-        //dispatch({ type: ADD_USERS, payload: data });
       } else {
         console.log("error");
       }

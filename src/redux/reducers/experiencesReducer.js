@@ -6,8 +6,8 @@ const userDataReducer = (state = [], action) => {
       return action.payload;
     case POST_USER_EXPERIENCE:
       return [...state, action.payload];
-    case PUT_USER_EXPERIENCE:
-      return action.payload;
+    /*    case PUT_USER_EXPERIENCE:
+      return action.payload;*/
     case DELETE_USER_EXPERIENCE:
       return action.payload;
     default:

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import UserMain from "./homeMain/UserMain";
 import { useEffect } from "react";
-import { addUserData, addUsers } from "../redux/action";
+import { addUserData, addUsers, getUserExperiences } from "../redux/action";
 import CardTitle from "./homeMain/CardTitle";
 import CardListItem from "./homeMain/CardListItem";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
   const users = useSelector((state) => state.users);
+  const userExperiences = useSelector((state) => state.experieces);
 
   useEffect(() => {
     if (!userData) {
@@ -19,6 +20,9 @@ const Home = () => {
     }
     if (!users.length) {
       dispatch(addUsers());
+    }
+    if (!userExperiences.length) {
+      dispatch(getUserExperiences());
     }
   }, []);
 
@@ -157,6 +161,22 @@ const Home = () => {
               <div className="card-footer bg-white text-body text-center">
                 <Link to="/" className="text-secondary text-decoration-none">
                   Mostra tutte le attività <i className="bi bi-arrow-right"></i>
+                </Link>
+              </div>
+            </div>
+            <div className="card mt-2">
+              <div className="card-body">
+                <CardTitle title="Esperienze" />
+                <ul className="list-unstyled">
+                  {userExperiences.map((experience) => (
+                    <CardListItem title={experience.role} txt={experience.description} />
+                  ))}
+                </ul>
+              </div>
+              <div className="card-footer bg-white text-body text-center">
+                <Link to="/experience" className="text-secondary text-decoration-none">
+                  Mostra tutte le attività {userExperiences.length ? <>&#40; {userExperiences.length} &#41;</> : ""}
+                  <i className="bi bi-arrow-right"></i>
                 </Link>
               </div>
             </div>
