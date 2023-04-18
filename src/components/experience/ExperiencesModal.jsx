@@ -2,7 +2,7 @@ import { useState } from "react";
 import { monthArray, yearsArray } from "../../helpers/mixed";
 import { useDispatch, useSelector } from "react-redux";
 import { postUserExperience } from "../../redux/action";
-const ExperiencesModal = ({ button }) => {
+const ExperiencesModal = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
   const [qualification, setQualification] = useState("");
@@ -62,6 +62,7 @@ const ExperiencesModal = ({ button }) => {
                       placeholder="Qualifica"
                       onChange={(e) => setQualification(e.target.value)}
                       required
+                      value={qualification}
                     />
                   </div>
                   <div className="mb-3">
@@ -75,6 +76,7 @@ const ExperiencesModal = ({ button }) => {
                       placeholder="Tipo di Impiego"
                       onChange={(e) => setEmployment(e.target.value)}
                       required
+                      value={employment}
                     />
                   </div>
                   <div className="mb-3">
@@ -89,6 +91,7 @@ const ExperiencesModal = ({ button }) => {
                       placeholder="Azienda"
                       onChange={(e) => setCompany(e.target.value)}
                       required
+                      value={company}
                     />
                   </div>
                   <div className="mb-3">
@@ -102,6 +105,7 @@ const ExperiencesModal = ({ button }) => {
                       placeholder="Località"
                       onChange={(e) => setLocation(e.target.value)}
                       required
+                      value={location}
                     />
                   </div>
                   <div className="mb-3 form-check">
@@ -111,6 +115,7 @@ const ExperiencesModal = ({ button }) => {
                       id="isCurrentJob"
                       defaultChecked
                       onChange={() => setIsCurrentJob(!isCurrentJob)}
+                      value={isCurrentJob}
                     />
                     <label className="form-check-label" htmlFor="isCurrentJob">
                       Attualmente ricopro questo ruolo
@@ -128,6 +133,7 @@ const ExperiencesModal = ({ button }) => {
                       defaultValue=""
                       onChange={(e) => setMonthStart(e.target.value)}
                       required
+                      value={monthStart}
                     >
                       <option value="">Mese</option>
                       {monthArray.map((m, i) => (
@@ -144,6 +150,7 @@ const ExperiencesModal = ({ button }) => {
                       defaultValue=""
                       onChange={(e) => setYearStart(e.target.value)}
                       required
+                      value={yearStart}
                     >
                       <option value="">Anno</option>
                       {yearsArray(50).map((y, i) => (
@@ -165,6 +172,7 @@ const ExperiencesModal = ({ button }) => {
                       defaultValue=""
                       disabled={isCurrentJob}
                       onChange={(e) => setMonthEnd(e.target.value)}
+                      value={monthEnd}
                     >
                       <option value="">Mese</option>
                       {monthArray.map((m, i) => (
@@ -181,6 +189,7 @@ const ExperiencesModal = ({ button }) => {
                       defaultValue=""
                       disabled={isCurrentJob}
                       onChange={(e) => setYearEnd(e.target.value)}
+                      value={yearEnd}
                     >
                       <option value="">Anno</option>
                       {yearsArray(50).map((y, i) => (
@@ -194,7 +203,7 @@ const ExperiencesModal = ({ button }) => {
                 <div className="row">
                   <div className="col-12">
                     <div className="mb-3">
-                      <label htmlFor="trede" className="form-label">
+                      <label htmlFor="trade" className="form-label">
                         Settore *
                       </label>
                       <input
@@ -203,6 +212,7 @@ const ExperiencesModal = ({ button }) => {
                         id="trade"
                         placeholder="Settore"
                         onChange={(e) => setTrade(e.target.value)}
+                        value={trade}
                       />
                     </div>
                   </div>

@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addUserData, getUserExperiences } from "../redux/action";
-import CardTitle from "./homeMain/CardTitle";
-import CardListItem from "./homeMain/CardListItem";
+import { addUserData, getUserExperiences } from "../../redux/action";
+import CardTitle from "../homeMain/CardTitle";
+import CardListItem from "../homeMain/CardListItem";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import ExperienceCard from "./ExperienceCard";
+import ExperiencesModal from "./ExperiencesModal";
 
 const Experiences = () => {
   const dispatch = useDispatch();
@@ -35,20 +37,15 @@ const Experiences = () => {
             <div className="card-body">
               <CardTitle title="Esperienze" />
               <ul className="list-unstyled">
-                <CardListItem
-                  title="Modalità creazione contenuti"
-                  txt="Fatti scoprire, metti in risalto i contenuti sul tuo profilo e accedi agli strumenti di creazione"
-                />
+                {userExperiences.map((experience) => (
+                  <ExperienceCard key={experience._id} edit experience={experience} />
+                ))}
               </ul>
-            </div>
-            <div className="card-footer bg-white text-body text-center">
-              <Link to="/" className="text-secondary text-decoration-none">
-                Mostra tutte le attività <i className="bi bi-arrow-right"></i>
-              </Link>
             </div>
           </div>
         </div>
       </div>
+      <ExperiencesModal />
     </div>
   );
 };

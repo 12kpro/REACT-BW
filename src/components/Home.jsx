@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import CardSlider from "./homeMain/CardSlider";
 import AsideBox from "./aside/AsideBox";
 import { suggestedCards } from "../helpers/cards";
+import ExperienceCard from "./experience/ExperienceCard";
 const Home = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
@@ -166,10 +167,10 @@ const Home = () => {
             </div>
             <div className="card mt-2">
               <div className="card-body">
-                <CardTitle title="Esperienze" />
+                <CardTitle title="Esperienze" edit="/experience" />
                 <ul className="list-unstyled">
                   {userExperiences.map((experience) => (
-                    <CardListItem title={experience.role} txt={experience.description} />
+                    <ExperienceCard key={experience._id} experience={experience} />
                   ))}
                 </ul>
               </div>

@@ -1,12 +1,27 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserMainCard from "./UserMainCard";
 import CardSlider from "./CardSlider";
-import ExperiencesModal from "./ExperiencesModal";
+import ExperiencesModal from "../experience/ExperiencesModal";
 import { userCards } from "../../helpers/cards";
+import { useState } from "react";
+import { postUserPicture } from "../../redux/action";
 const UserMain = () => {
   const userData = useSelector((state) => state.userData);
+  //const [file, setFile] = useState([]);
 
+  /*
+  per caricamento foto
+  const dispatch = useDispatch();
+                <input type="file" name="myImage" onChange={handleFile} />
+  const handleFile = (e) => {
+    //setFile(URL.createObjectURL(e.target.files[0]));
+    const formData = new FormData();
+    formData.append("profile", e.target.files[0]);
+    //formData.append("Username", userData.username);
+    dispatch(postUserPicture(userData._id, formData));
+  };
+*/
   return (
     <>
       {userData && (

@@ -16,6 +16,31 @@ export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE";
 export const PUT_USER_EXPERIENCE = "PUT_USER_EXPERIENCE";
 export const DELETE_USER_EXPERIENCE = "DELETE_USER_EXPERIENCE";
 
+export const postUserPicture = (userId, body) => {
+  return async (dispatch) => {
+    try {
+      let resp = await fetch(`${BASE_URL}/${userId}/picture`, {
+        method: "POST",
+        headers: {
+          Authorization: AUTHORIZATION
+          //"Content-Type": "multipart/form-data"
+        },
+        body
+      });
+      if (resp.ok) {
+        let data = await resp.json();
+        console.log(data);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("fetch loading finish");
+    }
+  };
+};
+
 export const getUserExperiences = (userId) => {
   return async (dispatch) => {
     try {
