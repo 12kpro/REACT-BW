@@ -53,9 +53,7 @@ export const postUserExperience = (userId, body) => {
       });
       if (resp.ok) {
         let data = await resp.json();
-        console.log(data);
-        //data = data.slice(0, 10);
-        //dispatch({ type: ADD_USERS, payload: data });
+        dispatch({ type: POST_USER_EXPERIENCE, payload: data });
       } else {
         console.log("error");
       }
