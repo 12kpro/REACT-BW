@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "../../redux/action";
 import { getUserPosts } from "../../redux/action/posts";
-import CardTitle from "../homeMain/CardTitle";
+import CardTitle from "../profile/CardTitle";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PostCard from "./PostCard";

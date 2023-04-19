@@ -12,7 +12,7 @@ const UserMain = () => {
     <>
       {userData && (
         <div className="col-12">
-          <div className="card mt-4 user-main">
+          <div className="card user-main">
             <img src={userData.image} className="card-img-top placeholder" />
             <div className="card-body">
               <div className="d-flex justify-content-between align-items-start">

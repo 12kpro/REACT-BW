@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addUserData, getUserExperiences } from "../../redux/action";
-import CardTitle from "../homeMain/CardTitle";
-import CardListItem from "../homeMain/CardListItem";
+import CardTitle from "../profile/CardTitle";
+import CardListItem from "../profile/CardListItem";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExperienceCard from "./ExperienceCard";

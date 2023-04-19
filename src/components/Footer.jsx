@@ -5,8 +5,7 @@ const Footer = () => {
     <footer className="my-3 mb-0 container">
       <div>
         <div className="row">
-          <div className="col-1" style={{ width: "6%" }}></div>
-          <div className="col-2 text-start pe-0 ps-0">
+          <div className="col-2 text-start">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
                 Informazioni
@@ -63,7 +62,7 @@ const Footer = () => {
             </p>
             <div className="text-left mb-2 mt-2 fw-light copyright"> Linkedin Corporation © 2023</div>
           </div>
-          <div className="col-2 pe-0 ps-0">
+          <div className="col-2">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
                 Accessibilità
@@ -85,7 +84,7 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <div className="col-2 pe-0 ps-0">
+          <div className="col-2">
             <p>
               <Link to="/" alt="footer link" className="footer-links">
                 Talent Solutions
@@ -107,7 +106,7 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <div className="col-3 pe-0 ps-0">
+          <div className="col-3">
             <div className="d-flex">
               <div className="me-2 mt-2">
                 <svg
@@ -173,7 +172,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="col-2 fw-light copyright pe-0 ps-0">
+          <div className="col-2 fw-light copyright">
             <div>
               <p>Seleziona lingua</p>
               <div className="btn-group">

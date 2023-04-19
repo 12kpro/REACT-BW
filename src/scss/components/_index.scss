@@ -1,5 +1,6 @@
 #root {
-  background-color: #f3f2ef;
+  background-color: $linkedin-bg;
+  padding-top: 80px;
 }
 
 .items-list {
@@ -11,4 +12,12 @@
 .btn-linkedin:hover {
   background-color: rgba(0, 0, 0, 0.08);
   color: rgba(0, 0, 0, 0.6);
+}
+.photo-circle {
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  border: 2px solid transparent;
+  border-radius: 50%;
 }
