@@ -11,8 +11,8 @@ export const getUserPosts = () => {
     try {
       let resp = await fetch(`${BASE_URL}`, {
         headers: {
-          Authorization: AUTHORIZATION
-        }
+          Authorization: AUTHORIZATION,
+        },
       });
       if (resp.ok) {
         let data = await resp.json();
@@ -36,9 +36,9 @@ export const postUserPost = (postId, body) => {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body
+        body,
       });
       if (resp.ok) {
         let data = await resp.json();
@@ -54,16 +54,16 @@ export const postUserPost = (postId, body) => {
   };
 };
 
-export const putUserPost = (userId, expId, body) => {
+export const putUserPost = (postId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences/${expId}`, {
+      let resp = await fetch(`${BASE_URL}${postId}`, {
         method: "PUT",
         headers: {
           Authorization: AUTHORIZATION,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body
+        body,
       });
       if (resp.ok) {
         //let data = await resp.json();
@@ -80,15 +80,15 @@ export const putUserPost = (userId, expId, body) => {
   };
 };
 
-export const deleteUserPost = (userId, expId) => {
+export const deleteUserPost = (postId) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences/${expId}`, {
+      let resp = await fetch(`${BASE_URL}${postId}`, {
         method: "DELETE",
         headers: {
           Authorization: AUTHORIZATION,
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
       if (resp.ok) {
         //dispatch({ type: DELETE_USER_POST, payload: expId });

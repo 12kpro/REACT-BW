@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { monthArray, yearsArray } from "../../helpers/mixed";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserPost, postUserPost, putUserPost } from "../../redux/action/posts";
 const PostsModal = ({ id = null }) => {
@@ -8,16 +7,7 @@ const PostsModal = ({ id = null }) => {
   const userPosts = useSelector((state) => state.posts);
   const [save, setSave] = useState(true);
 
-  const [role, setRole] = useState("");
-  const [description, setDescription] = useState("");
-  const [company, setCompany] = useState("");
-  const [area, setArea] = useState("");
-
-  const [isCurrentJob, setIsCurrentJob] = useState(true);
-  const [monthStart, setMonthStart] = useState("");
-  const [yearStart, setYearStart] = useState("");
-  const [monthEnd, setMonthEnd] = useState("");
-  const [yearEnd, setYearEnd] = useState("");
+  const [text, setText] = useState("");
 
   /*
   {
@@ -32,42 +22,20 @@ const PostsModal = ({ id = null }) => {
   useEffect(() => {
     if (id) {
       const post = userPosts.find((post) => post._id === id);
-      const currentStartDate = new Date(exp.startDate);
 
-      setRole(exp.role);
-      setCompany(exp.company);
-      setDescription(exp.description);
-      setArea(exp.area);
-
-      setMonthStart(currentStartDate.getMonth());
-      setYearStart(currentStartDate.getFullYear());
-
-      if (exp.endDate) {
-        const currentEndDate = new Date(exp.endDate);
-        setIsCurrentJob(false);
-        setMonthEnd(currentEndDate.getMonth());
-        setYearEnd(currentEndDate.getFullYear());
-      }
+      setText(post.text);
     }
   }, [id]);
 
   const handleDelete = () => {
-    dispatch(deleteUserPost(userData._id, id));
+    dispatch(deleteUserPost(id));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const day = new Date().getDate();
-    const formData = {
-      role: role,
-      company: company,
-      startDate: `${yearStart}-${monthStart.toString().padStart(2, "0")}-${day}`,
-      endDate: isCurrentJob ? null : `${yearEnd}-${monthEnd.toString().padStart(2, "0")}-${day}`,
-      description: description,
-      area: area
+    const formPost = {
+      text: text,
     };
-    id
-      ? dispatch(putUserPost(userData._id, id, JSON.stringify(formData)))
-      : dispatch(postUserPost(userData._id, JSON.stringify(formData)));
+    id ? dispatch(putUserPost(id, JSON.stringify(formPost))) : dispatch(postUserPost(id, JSON.stringify(formPost)));
   };
   return (
     <>
@@ -76,30 +44,16 @@ const PostsModal = ({ id = null }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Aggiungi esperienza
+                {`${userData.name} ${userData.surname}`}
               </h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <p>Pubblica:Chiunque</p>
             </div>
             <div className="modal-body">
               <div className="container-fluid">
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-12"></div>
-                    <div className="mb-3">
-                      <label htmlFor="role" className="form-label">
-                        Qualifica
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="role"
-                        aria-describedby="role"
-                        placeholder="Qualifica"
-                        onChange={(e) => setRole(e.target.value)}
-                        required
-                        value={role}
-                      />
-                    </div>
+                    <div className="mb-3"></div>
                     <div className="mb-3">
                       <label htmlFor="description" className="form-label">
                         Tipo di Impiego
@@ -108,131 +62,14 @@ const PostsModal = ({ id = null }) => {
                         className="form-control"
                         id="description"
                         rows="3"
-                        placeholder="Tipo di Impiego"
-                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Di cosa vorresti parlare?"
+                        onChange={(e) => setText(e.target.value)}
                         required
-                        value={description}
+                        value={text}
                       ></textarea>
                     </div>
-                    <div className="mb-3">
-                      <label htmlFor="company" className="form-label">
-                        Azienda
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="company"
-                        aria-describedby="emailHelp"
-                        placeholder="Azienda"
-                        onChange={(e) => setCompany(e.target.value)}
-                        required
-                        value={company}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="area" className="form-label">
-                        Località
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="area"
-                        placeholder="Località"
-                        onChange={(e) => setArea(e.target.value)}
-                        required
-                        value={area}
-                      />
-                    </div>
-                    <div className="mb-3 ">
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                          id="isCurrentJob"
-                          defaultChecked
-                          onChange={() => setIsCurrentJob(!isCurrentJob)}
-                          value={isCurrentJob}
-                        />
-                        <label className="form-check-label" htmlFor="isCurrentJob">
-                          Attualmente ricopro questo ruolo
-                        </label>
-                      </div>
-                    </div>
                   </div>
-                  <div className="row mb-3">
-                    <div className="col-12">
-                      <p className="small">Data inizio *</p>
-                    </div>
-                    <div className="col-6">
-                      <select
-                        className="form-select"
-                        aria-label="Default select example"
-                        onChange={(e) => setMonthStart(e.target.value)}
-                        required
-                        value={monthStart}
-                      >
-                        <option value="">Mese</option>
-                        {monthArray.map((m, i) => (
-                          <option key={`month-start-${i}`} value={i + 1} className="text-capitalize">
-                            {m}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="col-6">
-                      <select
-                        className="form-select"
-                        aria-label="Default select example"
-                        onChange={(e) => setYearStart(e.target.value)}
-                        required
-                        value={yearStart}
-                      >
-                        <option value="">Anno</option>
-                        {yearsArray(50).map((y, i) => (
-                          <option key={`years-start-${i}`} value={y}>
-                            {y}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="row mb-3">
-                    <div className="col-12">
-                      <p className="small">Data fine *</p>
-                    </div>
-                    <div className="col-6">
-                      <select
-                        className="form-select"
-                        aria-label="Default select example"
-                        disabled={isCurrentJob}
-                        onChange={(e) => setMonthEnd(e.target.value)}
-                        value={monthEnd}
-                      >
-                        <option value="">Mese</option>
-                        {monthArray.map((m, i) => (
-                          <option key={`month-end-${i}`} value={i + 1} className="text-capitalize">
-                            {m}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="col-6">
-                      <select
-                        className="form-select"
-                        aria-label="Default select example"
-                        disabled={isCurrentJob}
-                        onChange={(e) => setYearEnd(e.target.value)}
-                        value={yearEnd}
-                      >
-                        <option value="">Anno</option>
-                        {yearsArray(50).map((y, i) => (
-                          <option key={`years-end-${i}`} value={y}>
-                            {y}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
+                  <div className="row mb-3"></div>
                 </form>
               </div>
             </div>
