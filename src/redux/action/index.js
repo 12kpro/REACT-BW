@@ -16,6 +16,31 @@ export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE";
 export const PUT_USER_EXPERIENCE = "PUT_USER_EXPERIENCE";
 export const DELETE_USER_EXPERIENCE = "DELETE_USER_EXPERIENCE";
 
+export const postUserPicture = (userId, body) => {
+  return async (dispatch) => {
+    try {
+      let resp = await fetch(`${BASE_URL}/${userId}/picture`, {
+        method: "POST",
+        headers: {
+          Authorization: AUTHORIZATION
+          //"Content-Type": "multipart/form-data"
+        },
+        body
+      });
+      if (resp.ok) {
+        let data = await resp.json();
+        console.log(data);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("fetch loading finish");
+    }
+  };
+};
+
 export const getUserExperiences = (userId) => {
   return async (dispatch) => {
     try {
@@ -26,9 +51,8 @@ export const getUserExperiences = (userId) => {
       });
       if (resp.ok) {
         let data = await resp.json();
+        dispatch({ type: GET_USER_EXPERIENCES, payload: data });
         console.log(data);
-        //data = data.slice(0, 10);
-        //dispatch({ type: ADD_USERS, payload: data });
       } else {
         console.log("error");
       }
@@ -53,9 +77,7 @@ export const postUserExperience = (userId, body) => {
       });
       if (resp.ok) {
         let data = await resp.json();
-        console.log(data);
-        //data = data.slice(0, 10);
-        //dispatch({ type: ADD_USERS, payload: data });
+        dispatch({ type: POST_USER_EXPERIENCE, payload: data });
       } else {
         console.log("error");
       }
@@ -79,10 +101,9 @@ export const putUserExperience = (userId, expId, body) => {
         body
       });
       if (resp.ok) {
-        let data = await resp.json();
-        console.log(data);
-        //data = data.slice(0, 10);
-        //dispatch({ type: ADD_USERS, payload: data });
+        //let data = await resp.json();
+        //console.log(data);
+        dispatch({ type: PUT_USER_EXPERIENCE, id: expId, payload: JSON.parse(body) });
       } else {
         console.log("error");
       }
@@ -97,7 +118,7 @@ export const putUserExperience = (userId, expId, body) => {
 export const deleteUserExperience = (userId, expId) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences//${expId}`, {
+      let resp = await fetch(`${BASE_URL}/${userId}/experiences/${expId}`, {
         method: "DELETE",
         headers: {
           Authorization: AUTHORIZATION,
@@ -105,10 +126,7 @@ export const deleteUserExperience = (userId, expId) => {
         }
       });
       if (resp.ok) {
-        let data = await resp.json();
-        console.log(data);
-        //data = data.slice(0, 10);
-        //dispatch({ type: ADD_USERS, payload: data });
+        dispatch({ type: DELETE_USER_EXPERIENCE, payload: expId });
       } else {
         console.log("error");
       }
