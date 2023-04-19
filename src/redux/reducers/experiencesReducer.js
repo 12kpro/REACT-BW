@@ -1,6 +1,6 @@
 import { DELETE_USER_EXPERIENCE, GET_USER_EXPERIENCES, POST_USER_EXPERIENCE, PUT_USER_EXPERIENCE } from "../action";
 
-const userDataReducer = (state = [], action) => {
+const experiencesDataReducer = (state = [], action) => {
   switch (action.type) {
     case GET_USER_EXPERIENCES:
       return action.payload;
@@ -22,4 +22,4 @@ const userDataReducer = (state = [], action) => {
   }
 };
 
-export default userDataReducer;
+export default experiencesDataReducer;
