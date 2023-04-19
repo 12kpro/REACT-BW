@@ -1,15 +1,15 @@
 const AUTHORIZATION = `Bearer ${process.env.REACT_APP_API_KEY}`;
-const BASE_URL = "https://striveschool-api.herokuapp.com/api/profile";
+const BASE_URL = "https://striveschool-api.herokuapp.com/api/posts/";
 
 export const GET_USER_POSTS = "GET_USER_POSTS";
 export const POST_USER_POST = "POST_USER_POST";
 export const PUT_USER_POST = "PUT_USER_POST";
 export const DELETE_USER_POST = "DELETE_USER_POST";
 
-export const getUserPosts = (userId) => {
+export const getUserPosts = () => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences`, {
+      let resp = await fetch(`${BASE_URL}`, {
         headers: {
           Authorization: AUTHORIZATION
         }
@@ -29,10 +29,10 @@ export const getUserPosts = (userId) => {
   };
 };
 
-export const postUserPost = (userId, body) => {
+export const postUserPost = (postId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences`, {
+      let resp = await fetch(`${BASE_URL}${postId}`, {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION,

@@ -6,6 +6,7 @@ const PostsModal = ({ id = null }) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
   const userPosts = useSelector((state) => state.posts);
+  const [save, setSave] = useState(true);
 
   const [role, setRole] = useState("");
   const [description, setDescription] = useState("");
@@ -17,7 +18,7 @@ const PostsModal = ({ id = null }) => {
   const [yearStart, setYearStart] = useState("");
   const [monthEnd, setMonthEnd] = useState("");
   const [yearEnd, setYearEnd] = useState("");
-  const [save, setSave] = useState(true);
+
   /*
   {
     "_id": "5d93ac84b86e220017e76ae1", 				// server generated
