@@ -27,7 +27,7 @@ const Home = () => {
       className="container"
       style={{
         marginTop: "50px",
-        marginLeft: "31px"
+        marginLeft: "31px",
         /* paddingRight: "300px", */
       }}
     >
@@ -99,8 +99,8 @@ const Home = () => {
         <aside className="col-3">
           <AsideBox title="Persone che potresti conoscere" />
         </aside> */}
-        <div className="col-1 d-none d-lg-block" style={{ width: "10%" }}></div>
-        <div className="col-8 col-md-12" style={{ width: "63%" }}>
+        <div className=" col-1 d-none d-md-block"></div>
+        <div className="col-8">
           <UserMain />
           <div>
             <div className="card mt-2">
