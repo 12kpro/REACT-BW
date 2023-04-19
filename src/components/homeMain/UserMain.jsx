@@ -1,29 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import UserMainCard from "./UserMainCard";
 import CardSlider from "./CardSlider";
-import CardPhoto from "./CardPhoto";
 import ExperiencesModal from "../experience/ExperiencesModal";
 import { userCards } from "../../helpers/cards";
-import { useState } from "react";
-import { postUserPicture } from "../../redux/action";
+import ProfilePhotoModal from "./ProfilePhotoModal";
 
 const UserMain = () => {
   const userData = useSelector((state) => state.userData);
-  //const [file, setFile] = useState([]);
 
-  /*
-  per caricamento foto
-  const dispatch = useDispatch();
-                <input type="file" name="myImage" onChange={handleFile} />
-  const handleFile = (e) => {
-    //setFile(URL.createObjectURL(e.target.files[0]));
-    const formData = new FormData();
-    formData.append("profile", e.target.files[0]);
-    //formData.append("Username", userData.username);
-    dispatch(postUserPicture(userData._id, formData));
-  };
-*/
   return (
     <>
       {userData && (
@@ -32,7 +16,21 @@ const UserMain = () => {
             <img src={userData.image} className="card-img-top placeholder" />
             <div className="card-body">
               <div className="d-flex justify-content-between">
-                <CardPhoto src={userData.image} />
+                <div className="top-card--photo">
+                  <div className="top-card__photo-wrapper">
+                    <div className="top-card__edit-photo">
+                      {userData.image ? <img src={userData.image} /> : <i class="bi bi-camera"></i>}
+                      <button
+                        aria-label="Modifica foto"
+                        className="top-card__edit-photo-button"
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#UploadPhotoProfile"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+                <ProfilePhotoModal />
                 <Link to="/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

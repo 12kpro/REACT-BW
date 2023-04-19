@@ -9,6 +9,7 @@ import CardSlider from "./homeMain/CardSlider";
 import AsideBox from "./aside/AsideBox";
 import { suggestedCards } from "../helpers/cards";
 import ExperienceCard from "./experience/ExperienceCard";
+import ExperiencesMain from "./experience/ExperiencesMain";
 const Home = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
@@ -35,7 +36,7 @@ const Home = () => {
       className="container"
       style={{
         marginTop: "50px",
-        marginLeft: "31px",
+        marginLeft: "31px"
         /* paddingRight: "300px", */
       }}
     >
@@ -168,22 +169,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="card mt-2">
-              <div className="card-body">
-                <CardTitle title="Esperienze" edit="/experience" />
-                <ul className="list-unstyled">
-                  {userExperiences.map((experience) => (
-                    <ExperienceCard key={experience._id} experience={experience} />
-                  ))}
-                </ul>
-              </div>
-              <div className="card-footer bg-white text-body text-center">
-                <Link to="/experience" className="text-secondary text-decoration-none">
-                  Mostra tutte le attività {userExperiences.length ? <>&#40; {userExperiences.length} &#41;</> : ""}
-                  <i className="bi bi-arrow-right"></i>
-                </Link>
-              </div>
-            </div>
+            <ExperiencesMain edit />
           </div>
         </div>
         <div className="col-3 d-none d-md-block">

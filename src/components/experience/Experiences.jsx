@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExperienceCard from "./ExperienceCard";
 import ExperiencesModal from "./ExperiencesModal";
+import ExperiencesMain from "./ExperiencesMain";
 
 const Experiences = () => {
   const dispatch = useDispatch();
@@ -46,16 +47,7 @@ const Experiences = () => {
       <div className="row">
         <div className="col-1 d-none d-lg-block" style={{ width: "10%" }}></div>
         <div className="col-8 col-md-12" style={{ width: "63%" }}>
-          <div className="card mt-2">
-            <div className="card-body">
-              <CardTitle title="Esperienze" />
-              <ul className="list-unstyled">
-                {userExperiences.map((experience) => (
-                  <ExperienceCard key={experience._id} edit experience={experience} setId={setSelectedId} />
-                ))}
-              </ul>
-            </div>
-          </div>
+          <ExperiencesMain back />
         </div>
       </div>
       <ExperiencesModal id={selectedId} />

@@ -1,6 +1,5 @@
 const AUTHORIZATION = `Bearer ${process.env.REACT_APP_API_KEY}`;
-const BASE_URL = "https://striveschool-api.herokuapp.com/api/profile";
-
+const BASE_URL = "https://striveschool-api.herokuapp.com/api";
 /*
 export const CREATE_PLAYLIST = "CREATE_PLAYLIST";
 export const DELETE_PLAYLIST = "DELETE_PLAYLIST";
@@ -16,10 +15,53 @@ export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE";
 export const PUT_USER_EXPERIENCE = "PUT_USER_EXPERIENCE";
 export const DELETE_USER_EXPERIENCE = "DELETE_USER_EXPERIENCE";
 
+export const postPicture = (id, body, type, userId) => {
+  return async (dispatch) => {
+    let path = "";
+    if (type === "experience") {
+      path = `/profile/${userId}/experiences/${id}/picture`;
+    } else if (path === "post") {
+      path = `/posts/${id}`;
+    } else {
+      path = `/profile/${userId}/picture`;
+    }
+    //https://striveschool-api.herokuapp.com/api/profile/{userId}/picture
+    //https://striveschool-api.herokuapp.com/api/profile/{userId}/experiences/:expId/picture
+    //https://striveschool-api.herokuapp.com/api/posts/:postId
+
+    try {
+      let resp = await fetch(`${BASE_URL}${path}`, {
+        method: "POST",
+        headers: {
+          Authorization: AUTHORIZATION
+        },
+        body
+      });
+      if (resp.ok) {
+        let data = await resp.json();
+        console.log(data);
+        if (type === "experience") {
+          dispatch({ type: PUT_USER_EXPERIENCE, id: id, payload: data });
+        } else if (path === "post") {
+          //dispatch({ type: ADD_USER_DATA, payload: data });
+        } else {
+          //dispatch({ type: ADD_USER_DATA, payload: data });
+        }
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("fetch loading finish");
+    }
+  };
+};
+
 export const postUserPicture = (userId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/picture`, {
+      let resp = await fetch(`${BASE_URL}/profile/${userId}/picture`, {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION
@@ -29,7 +71,7 @@ export const postUserPicture = (userId, body) => {
       });
       if (resp.ok) {
         let data = await resp.json();
-        console.log(data);
+        dispatch({ type: ADD_USER_DATA, payload: data });
       } else {
         console.log("error");
       }
@@ -44,7 +86,7 @@ export const postUserPicture = (userId, body) => {
 export const getUserExperiences = (userId) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences`, {
+      let resp = await fetch(`${BASE_URL}/profile/${userId}/experiences`, {
         headers: {
           Authorization: AUTHORIZATION
         }
@@ -67,7 +109,7 @@ export const getUserExperiences = (userId) => {
 export const postUserExperience = (userId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences`, {
+      let resp = await fetch(`${BASE_URL}/profile/${userId}/experiences`, {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION,
@@ -92,7 +134,7 @@ export const postUserExperience = (userId, body) => {
 export const putUserExperience = (userId, expId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences/${expId}`, {
+      let resp = await fetch(`${BASE_URL}/profile/${userId}/experiences/${expId}`, {
         method: "PUT",
         headers: {
           Authorization: AUTHORIZATION,
@@ -118,7 +160,7 @@ export const putUserExperience = (userId, expId, body) => {
 export const deleteUserExperience = (userId, expId) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/${userId}/experiences/${expId}`, {
+      let resp = await fetch(`${BASE_URL}/profile/${userId}/experiences/${expId}`, {
         method: "DELETE",
         headers: {
           Authorization: AUTHORIZATION,
@@ -141,7 +183,7 @@ export const deleteUserExperience = (userId, expId) => {
 export const addUsers = () => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/`, {
+      let resp = await fetch(`${BASE_URL}/profile/`, {
         headers: {
           Authorization: AUTHORIZATION
         }
@@ -163,7 +205,7 @@ export const addUsers = () => {
 export const addUserData = () => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}/me`, {
+      let resp = await fetch(`${BASE_URL}/profile/me`, {
         headers: {
           Authorization: AUTHORIZATION
         }
