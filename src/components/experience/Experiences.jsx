@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserData, getUserExperiences } from "../../redux/action";
 import CardTitle from "../homeMain/CardTitle";
 import CardListItem from "../homeMain/CardListItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExperienceCard from "./ExperienceCard";
 import ExperiencesModal from "./ExperiencesModal";
@@ -11,16 +11,29 @@ const Experiences = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
   const userExperiences = useSelector((state) => state.experieces);
+  const [selectedId, setSelectedId] = useState();
 
   useEffect(() => {
     if (!userData) {
       dispatch(addUserData());
     }
+    /*
     if (!userExperiences.length) {
-      dispatch(getUserExperiences());
+      dispatch(getUserExperiences(userData._id));
     }
+    */
   }, []);
-
+  useEffect(() => {
+    if (userData) {
+      /*
+    if (!users.length) {
+      dispatch(addUsers());
+    }*/
+      if (!userExperiences.length) {
+        dispatch(getUserExperiences(userData._id));
+      }
+    }
+  }, [userData]);
   return (
     <div
       className="container"
@@ -38,14 +51,14 @@ const Experiences = () => {
               <CardTitle title="Esperienze" />
               <ul className="list-unstyled">
                 {userExperiences.map((experience) => (
-                  <ExperienceCard key={experience._id} edit experience={experience} />
+                  <ExperienceCard key={experience._id} edit experience={experience} setId={setSelectedId} />
                 ))}
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <ExperiencesModal />
+      <ExperiencesModal id={selectedId} />
     </div>
   );
 };

@@ -19,14 +19,17 @@ const Home = () => {
     if (!userData) {
       dispatch(addUserData());
     }
-    if (!users.length) {
-      dispatch(addUsers());
-    }
-    if (!userExperiences.length) {
-      dispatch(getUserExperiences());
-    }
   }, []);
-
+  useEffect(() => {
+    if (userData) {
+      if (!users.length) {
+        dispatch(addUsers());
+      }
+      if (!userExperiences.length) {
+        dispatch(getUserExperiences(userData._id));
+      }
+    }
+  }, [userData]);
   return (
     <div
       className="container"

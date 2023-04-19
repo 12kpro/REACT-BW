@@ -6,10 +6,17 @@ const userDataReducer = (state = [], action) => {
       return action.payload;
     case POST_USER_EXPERIENCE:
       return [...state, action.payload];
-    /*    case PUT_USER_EXPERIENCE:
-      return action.payload;*/
+    case PUT_USER_EXPERIENCE:
+      return state.map((exp) => {
+        if (exp._id !== action.id) {
+          return exp;
+        }
+        return {
+          ...action.payload
+        };
+      });
     case DELETE_USER_EXPERIENCE:
-      return action.payload;
+      return state.filter((exp) => exp._id !== action.payload);
     default:
       return state;
   }
