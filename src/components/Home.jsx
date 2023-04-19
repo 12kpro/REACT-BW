@@ -119,9 +119,9 @@ const Home = () => {
               </div>
             </div>
             <div className="card mt-2">
-              <div className="card-body">
+              <div className="card-body pb-0">
                 <CardTitle title="Analisi" />
-                <ul className="list-unstyled">
+                <ul className="list-unstyled items-list m-0">
                   <CardListItem
                     icon="bi-people-fill"
                     title="0 visualizzazioni del profilo"
@@ -131,9 +131,9 @@ const Home = () => {
               </div>
             </div>
             <div className="card mt-2">
-              <div className="card-body">
+              <div className="card-body pb-0">
                 <CardTitle title="Risorse" />
-                <ul className="list-unstyled">
+                <ul className="list-unstyled items-list m-0">
                   <CardListItem
                     icon="bi-broadcast-pin"
                     title="Modalità creazione contenuti"
@@ -154,9 +154,9 @@ const Home = () => {
               </div>
             </div>
             <div className="card mt-2">
-              <div className="card-body">
+              <div className="card-body pb-0">
                 <CardTitle title="Attività" />
-                <ul className="list-unstyled">
+                <ul className="list-unstyled items-list m-0">
                   <CardListItem
                     title="Modalità creazione contenuti"
                     txt="Fatti scoprire, metti in risalto i contenuti sul tuo profilo e accedi agli strumenti di creazione"

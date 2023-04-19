@@ -1,3 +1,16 @@
 #root {
   background-color: #f3f2ef;
 }
+
+.items-list {
+  li:last-of-type {
+    --bs-border-color: transparent;
+  }
+}
+.btn:hover {
+  background-color: blueviolet;
+}
+.btn-linkedin:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.6);
+}

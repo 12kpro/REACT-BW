@@ -8,7 +8,7 @@ const ExperienceCard = ({ experience, edit, setId }) => {
     onClick: () => setId(experience._id)
   };
   return (
-    <div className="d-flex border-bottom py-3 ">
+    <li className="d-flex border-bottom py-3 ">
       <button aria-label="Modifica foto" className="btn" type="button" {...(edit && { ...editProps })}>
         {experience.image ? (
           <img src={experience.image ? experience.image : ""} alt={experience.username} height="50px" width="50px" />
@@ -53,7 +53,7 @@ const ExperienceCard = ({ experience, edit, setId }) => {
           <i className="bi bi-pencil"></i>
         </button>
       )}
-    </div>
+    </li>
   );
 };
 export default ExperienceCard;

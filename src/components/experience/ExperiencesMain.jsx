@@ -6,41 +6,45 @@ import { Link } from "react-router-dom";
 import PhotoUploadModal from "../homeMain/PhotoUploadModal";
 
 const ExperiencesMain = ({ edit, back = false }) => {
-  const userExperiences = useSelector((state) => state.experieces);
+  const items = useSelector((state) => state.experieces);
   const [selectedId, setSelectedId] = useState();
 
   return (
     <div className="card mt-2">
-      <div className="card-body">
+      <div className="card-body pb-0">
         <div className="card-title">
-          <div className="d-flex">
+          <div className="d-flex align-items-center">
             {back && (
-              <Link className="btn" to="/">
+              <Link className="btn btn-linkedin rounded-circle" to="/">
                 <i className="bi bi-arrow-left"></i>
               </Link>
             )}
-            <h2 className="fs-5 m-0 flex-grow-1">Esperienze</h2>
-            <button className="btn" data-bs-toggle="modal" data-bs-target="#experiencesForm">
+            <div className="flex-grow-1">
+              <h2 className="fs-5 m-0 ">Esperienze</h2>
+              <p className="small text-secondary m-0">
+                <i className="bi bi-eye-fill pe-1"></i>
+                Solo per te
+              </p>
+            </div>
+
+            <button
+              className="btn btn-linkedin rounded-circle"
+              data-bs-toggle="modal"
+              data-bs-target="#experiencesForm"
+            >
               <i className="bi bi-plus"></i>
             </button>
             {edit && (
-              <Link className="btn" to="/experience">
+              <Link className="btn btn-linkedin rounded-circle" to="/experience">
                 <i className="bi bi-pencil"></i>
               </Link>
             )}
           </div>
-
-          <p className="small text-secondary">
-            <i className="bi bi-eye-fill pe-1"></i>
-            Solo per te
-          </p>
         </div>
-        <ul className="list-unstyled">
+        <ul className="list-unstyled items-list m-0">
           {edit
-            ? userExperiences
-                .slice(0, 5)
-                .map((experience) => <ExperienceCard key={experience._id} experience={experience} />)
-            : userExperiences.map((experience) => (
+            ? items.slice(0, 5).map((experience) => <ExperienceCard key={experience._id} experience={experience} />)
+            : items.map((experience) => (
                 <ExperienceCard key={experience._id} edit experience={experience} setId={setSelectedId} />
               ))}
         </ul>
@@ -48,7 +52,7 @@ const ExperiencesMain = ({ edit, back = false }) => {
       {edit && (
         <div className="card-footer bg-white text-body text-center">
           <Link to="/experience" className="text-secondary text-decoration-none">
-            Mostra tutte le attività {userExperiences.length ? <>&#40; {userExperiences.length} &#41;</> : ""}
+            Mostra tutte le attività {items.length ? <>&#40; {items.length} &#41;</> : ""}
             <i className="bi bi-arrow-right"></i>
           </Link>
         </div>
