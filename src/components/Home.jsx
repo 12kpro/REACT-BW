@@ -164,7 +164,7 @@ const Home = () => {
                 </ul>
               </div>
               <div className="card-footer bg-white text-body text-center">
-                <Link to="/" className="text-secondary text-decoration-none">
+                <Link to="/posts" className="text-secondary text-decoration-none">
                   Mostra tutte le attività <i className="bi bi-arrow-right"></i>
                 </Link>
               </div>

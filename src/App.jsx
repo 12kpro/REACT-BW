@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import SiteNav from "./components/SiteNav";
 import Footer from "./components/Footer";
 import Experiences from "./components/experience/Experiences";
+import Posts from "./components/posts/Posts";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Experiences />} />
+        <Route path="/posts" element={<Posts />} />
       </Routes>
       <Footer />
     </BrowserRouter>
