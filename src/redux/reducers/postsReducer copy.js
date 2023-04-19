@@ -7,16 +7,16 @@ const postsDataReducer = (state = [], action) => {
     case POST_USER_POST:
       return [...state, action.payload];
     case PUT_USER_POST:
-      return state.map((posts) => {
-        if (posts._id !== action.id) {
-          return posts;
+      return state.map((post) => {
+        if (post._id !== action.id) {
+          return post;
         }
         return {
-          ...action.payload,
+          ...action.payload
         };
       });
     case DELETE_USER_POST:
-      return state.filter((posts) => posts._id !== action.payload);
+      return state.filter((post) => post._id !== action.payload);
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addUserData, getUserPosts } from "../../redux/action";
+import { addUserData } from "../../redux/action";
+import { getUserPosts } from "../../redux/action/posts";
 import CardTitle from "../homeMain/CardTitle";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -47,7 +48,7 @@ const Posts = () => {
         <div className="col-8 col-md-12" style={{ width: "63%" }}>
           <div className="card mt-2">
             <div className="card-body">
-              <CardTitle title="Esperienze" />
+              <CardTitle title="Attività" />
               <ul className="list-unstyled">
                 {userPosts.map((Post) => (
                   <PostCard key={Post._id} edit Post={Post} setId={setSelectedId} />

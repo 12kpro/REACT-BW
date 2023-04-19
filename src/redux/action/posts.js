@@ -11,12 +11,12 @@ export const getUserPosts = () => {
     try {
       let resp = await fetch(`${BASE_URL}`, {
         headers: {
-          Authorization: AUTHORIZATION,
-        },
+          Authorization: AUTHORIZATION
+        }
       });
       if (resp.ok) {
         let data = await resp.json();
-        //dispatch({ type: GET_USER_POSTS, payload: data });
+        dispatch({ type: GET_USER_POSTS, payload: data.slice(0, 15) });
         console.log(data);
       } else {
         console.log("error");
@@ -36,9 +36,9 @@ export const postUserPost = (postId, body) => {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION,
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body,
+        body
       });
       if (resp.ok) {
         let data = await resp.json();
@@ -61,9 +61,9 @@ export const putUserPost = (postId, body) => {
         method: "PUT",
         headers: {
           Authorization: AUTHORIZATION,
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body,
+        body
       });
       if (resp.ok) {
         //let data = await resp.json();
@@ -87,8 +87,8 @@ export const deleteUserPost = (postId) => {
         method: "DELETE",
         headers: {
           Authorization: AUTHORIZATION,
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       });
       if (resp.ok) {
         //dispatch({ type: DELETE_USER_POST, payload: expId });

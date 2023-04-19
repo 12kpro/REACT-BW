@@ -33,7 +33,7 @@ const PostsModal = ({ id = null }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formPost = {
-      text: text,
+      text: text
     };
     id ? dispatch(putUserPost(id, JSON.stringify(formPost))) : dispatch(postUserPost(id, JSON.stringify(formPost)));
   };
@@ -46,6 +46,7 @@ const PostsModal = ({ id = null }) => {
               <h1 className="modal-title fs-5" id="exampleModalLabel">
                 {`${userData.name} ${userData.surname}`}
               </h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               <p>Pubblica:Chiunque</p>
             </div>
             <div className="modal-body">
