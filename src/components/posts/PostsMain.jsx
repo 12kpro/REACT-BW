@@ -12,7 +12,6 @@ const PostsMain = ({ edit, back = false }) => {
   const [selectedId, setSelectedId] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   useEffect(() => {
-    console.log(posts);
     if (userData)
       setUserPosts(
         posts.filter((post) => {

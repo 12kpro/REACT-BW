@@ -17,20 +17,45 @@ export const POST_USER_EXPERIENCE = "POST_USER_EXPERIENCE";
 export const PUT_USER_EXPERIENCE = "PUT_USER_EXPERIENCE";
 export const DELETE_USER_EXPERIENCE = "DELETE_USER_EXPERIENCE";
 
-export const postPicture = (id, body, type, userId) => {
+export const postPicture = (id, body, type, userData) => {
   return async (dispatch) => {
     let path = "";
     if (type === "experience") {
-      path = `/profile/${userId}/experiences/${id}/picture`;
+      path = `/profile/${userData._id}/experiences/${id}/picture`;
     } else if (type === "post") {
       path = `/posts/${id}`;
     } else {
-      path = `/profile/${userId}/picture`;
+      path = `/profile/${userData._id}/picture`;
     }
     //https://striveschool-api.herokuapp.com/api/profile/{userId}/picture
     //https://striveschool-api.herokuapp.com/api/profile/{userId}/experiences/:expId/picture
     //https://striveschool-api.herokuapp.com/api/posts/:postId
-
+    /*
+createdAt
+: 
+"2023-04-20T09:22:29.799Z"
+image
+: 
+"https://epicode-testapi-bucket.s3.eu-south-1.amazonaws.com/1681985762053-3551739.jpg"
+text
+: 
+"porviamo un post"
+updatedAt
+: 
+"2023-04-20T10:16:02.708Z"
+user
+: 
+{_id: '643d0124186a8700143867c6', name: 'Mauro', surname: 'Simoni', email: 'mauro.simoni@gmail.com', username: 'mauro79', …}
+username
+: 
+"mauro79"
+__v
+: 
+0
+_id
+: 
+"64410455c3d6df001417b0e4"
+*/
     try {
       let resp = await fetch(`${BASE_URL}${path}`, {
         method: "POST",
@@ -45,6 +70,8 @@ export const postPicture = (id, body, type, userId) => {
         if (type === "experience") {
           dispatch({ type: PUT_USER_EXPERIENCE, id: id, payload: data });
         } else if (type === "post") {
+          data = data._doc;
+          data.user = userData;
           dispatch({ type: PUT_USER_POST, id: id, payload: data });
         } else {
           //dispatch({ type: ADD_USER_DATA, payload: data });

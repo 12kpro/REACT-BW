@@ -17,7 +17,6 @@ export const getUserPosts = () => {
       if (resp.ok) {
         let data = await resp.json();
         dispatch({ type: GET_USER_POSTS, payload: data });
-        console.log(data);
       } else {
         console.log("error");
       }

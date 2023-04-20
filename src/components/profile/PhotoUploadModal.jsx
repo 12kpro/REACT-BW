@@ -14,7 +14,7 @@ function PhotoUploadModal({ id, dataProp }) {
     const formData = new FormData();
     formData.append(dataProp, photo);
     console.log(formData);
-    dispatch(postPicture(id, formData, dataProp, userData._id));
+    dispatch(postPicture(id, formData, dataProp, userData));
     //postPicture = (id, body, userId, type)
     //dispatch(postUserPicture(userData._id, formData));
   };
