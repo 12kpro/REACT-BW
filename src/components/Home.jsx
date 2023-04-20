@@ -6,6 +6,9 @@ import PostCard from "./posts/PostCard";
 import PostsModal from "./posts/PostsModal";
 import PhotoUploadModal from "./profile/PhotoUploadModal";
 import { getUserPosts } from "../redux/action/posts";
+import ProfilePhotoModal from "./profile/ProfilePhotoModal";
+import { Link } from "react-router-dom";
+
 const Home = () => {
   /*
   const dispatch = useDispatch();
@@ -14,6 +17,7 @@ const Home = () => {
   */
   const posts = useSelector((state) => state.posts);
   const [selectedId, setSelectedId] = useState();
+  const userData = useSelector((state) => state.userData);
 
   return (
     <div className="container">
@@ -87,17 +91,40 @@ const Home = () => {
         </aside> */}
         <div className=" col-3">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <div>
+              {" "}
+              {userData.image ? (
+                <img className="card-img-top" src={userData.image} />
+              ) : (
+                <i class="bi bi-camera"></i>
+              )}{" "}
+            </div>
             <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's content.
-              </p>
+              <h5 className="card-title">Ti diamo il benvenuto {`${userData.name}`}!</h5>
+              <Link to="/" data-bs-toggle="modal" data-bs-target="#UploadPhotoProfile">
+                Aggiungi una foto
+              </Link>
+              <ProfilePhotoModal />
             </div>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">An item</li>
-              <li className="list-group-item">A second item</li>
-              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">Collegamenti</li>
+              <li className="list-group-item">
+                <Link className="text-decoration-none" to="/">
+                  <div className="d-flex justify-content-center"></div>
+                  <p
+                    className=""
+                    style={{
+                      fontSize: "small",
+                      maxWidth: "125px",
+                      textDecoration: "underline",
+                      lineHeight: "15px",
+                    }}
+                  >
+                    Prova Premium gratuitamente
+                  </p>
+                </Link>
+              </li>
+              <li className="list-group-item">I miei elementi</li>
             </ul>
             <div className="card-body">
               <a href="#" className="card-link">
@@ -108,9 +135,17 @@ const Home = () => {
               </a>
             </div>
           </div>
+          <div class="card mt-2 sticky-top">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Gruppi</li>
+              <li class="list-group-item">Eventi</li>
+              <li class="list-group-item">Hashtag seguiti</li>
+            </ul>
+          </div>
         </div>
+
         <div className="col-6">
-          <div className="card">
+          <div className="card mb-3">
             <div className="card-body">
               <div className="d-flex mb-3">
                 <img
@@ -142,6 +177,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+
           {posts.map((post) => (
             <PostCard key={post._id} edit post={post} setId={setSelectedId} />
           ))}
@@ -149,9 +185,27 @@ const Home = () => {
           <PhotoUploadModal id={selectedId} dataProp="post" />
         </div>
         <div className="col-3 d-none d-md-block">
-          <aside>
+          {/*  <aside>
             <AsideBox title="Persone che potresti conoscere" />
-          </aside>
+          </aside> */}
+
+          <div class="card">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">An item</li>
+              <li class="list-group-item">A second item</li>
+              <li class="list-group-item">A third item</li>
+              <li class="list-group-item">A third item</li>
+              <li class="list-group-item">A third item</li>
+              <li class="list-group-item">A third item</li>
+            </ul>
+          </div>
+          <img
+            src="https://media.licdn.com/media/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png"
+            alt="Advertise on LinkedIn"
+            border="0"
+            className="sticky-top mt-2 rounded"
+            style={{ width: "262px" }}
+          ></img>
         </div>
       </div>
     </div>

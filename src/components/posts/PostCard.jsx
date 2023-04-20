@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 const PostCard = ({ post, edit, setId }) => {
   const userData = useSelector((state) => state.userData);
   return (
-    <div className="card">
+    <div className="card mt-1">
       <div className="card-body">
         <div className="d-flex">
           <h5 className="card-title flex-grow-1">
