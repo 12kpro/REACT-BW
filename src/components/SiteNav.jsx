@@ -1,5 +1,23 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getJobsSearch } from "../redux/action/jobs";
 const SiteNav = () => {
+  const [searchText, setSearchText] = useState("");
+  const dispatch = useDispatch();
+  const searchKind = useSelector((state) => state.job.searchKind);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (searchKind === "search") {
+      dispatch(getJobsSearch({ search: searchText }));
+    } else if (searchKind === "company") {
+      dispatch(getJobsSearch({ company: searchText }));
+    } else if (searchKind === "category") {
+      dispatch(getJobsSearch({ category: searchText, limit: 10 }));
+    }
+  };
   return (
     <div className="fixed-top bg-white border-bottom" style={{ height: "55px" }}>
       <div className="d-flex align-items-center justify-content-center mt-0">
@@ -20,18 +38,21 @@ const SiteNav = () => {
           </div>
         </Link>
         <div className="position-relative" style={{ paddingRight: "110px" }}>
-          <input
-            className="border border-0 rounded"
-            type="text"
-            placeholder="Cerca"
-            style={{
-              width: "280px",
-              height: "34px",
-              backgroundColor: "#eef3f8",
-              paddingRight: "0.8rem",
-              paddingLeft: "40px",
-            }}
-          ></input>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="border border-0 rounded"
+              type="text"
+              placeholder={searchKind}
+              style={{
+                width: "280px",
+                height: "34px",
+                backgroundColor: "#eef3f8",
+                paddingRight: "0.8rem",
+                paddingLeft: "40px"
+              }}
+              onChange={(e) => setSearchText(e.target.value)}
+            ></input>
+          </form>
           <div
             className="position-absolute top-0 start-0 d-flex justify-content-center align-items-center fw-bold"
             style={{ width: "40px", height: "34px" }}
@@ -89,7 +110,7 @@ const SiteNav = () => {
               </Link>
             </li>
             <li className="d-flex me-4">
-              <Link className="text-decoration-none" to="/">
+              <Link className="text-decoration-none" to="/jobs">
                 <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +167,7 @@ const SiteNav = () => {
               </Link>
             </li>
             <li className="d-flex border-end me-3" style={{ height: "48px" }}>
-              <Link className="text-decoration-none" to="/">
+              <Link className="text-decoration-none" to="/profile">
                 <div className="d-flex justify-content-center pt-1">
                   <button className="bg-transparent border border-0 pe-4">
                     <img

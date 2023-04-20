@@ -27,35 +27,6 @@ export const postPicture = (id, body, type, userData) => {
     } else {
       path = `/profile/${userData._id}/picture`;
     }
-    //https://striveschool-api.herokuapp.com/api/profile/{userId}/picture
-    //https://striveschool-api.herokuapp.com/api/profile/{userId}/experiences/:expId/picture
-    //https://striveschool-api.herokuapp.com/api/posts/:postId
-    /*
-createdAt
-: 
-"2023-04-20T09:22:29.799Z"
-image
-: 
-"https://epicode-testapi-bucket.s3.eu-south-1.amazonaws.com/1681985762053-3551739.jpg"
-text
-: 
-"porviamo un post"
-updatedAt
-: 
-"2023-04-20T10:16:02.708Z"
-user
-: 
-{_id: '643d0124186a8700143867c6', name: 'Mauro', surname: 'Simoni', email: 'mauro.simoni@gmail.com', username: 'mauro79', …}
-username
-: 
-"mauro79"
-__v
-: 
-0
-_id
-: 
-"64410455c3d6df001417b0e4"
-*/
     try {
       let resp = await fetch(`${BASE_URL}${path}`, {
         method: "POST",
