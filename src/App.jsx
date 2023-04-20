@@ -45,7 +45,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/experience" element={<Experiences />} />
         <Route path="/posts" element={<Posts />} />
-        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/:kind" element={<Jobs />} />
         <Route path="/currentjob/:id" element={<Jobs />} />
       </Routes>
     </BrowserRouter>

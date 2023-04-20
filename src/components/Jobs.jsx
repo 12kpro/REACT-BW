@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import JobCard from "./jobs/JobCard";
 import BookmarksCard from "./jobs/BookmarksCard";
+import { jobSearchKindUpdate } from "../redux/action/jobs";
 const Jobs = () => {
   //  const posts = useSelector((state) => state.posts);
-  const [selectedId, setSelectedId] = useState();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
-  const jobsBookmark = useSelector((state) => state.job.bookmarks);
-
+  useEffect(() => {
+    dispatch(jobSearchKindUpdate("search"));
+  }, []);
   const menuLink = [
     { icon: "bi-bookmark-fill", text: "Le mie offerte di lavoro" },
     { icon: "bi-bell-fill", text: "Avvisi offerte di lavoro" },
@@ -60,18 +62,6 @@ const Jobs = () => {
     }
   ];
 
-  /*
-<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-  <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-  <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-  <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-</div>
-  */
   return (
     <div className="container">
       <div className="row">
@@ -94,6 +84,67 @@ const Jobs = () => {
           <div className="card">
             <div className="card-body">
               <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="btnradio"
+                  id="btnradio1"
+                  autoComplete="off"
+                  defaultChecked
+                  onClick={() => dispatch(jobSearchKindUpdate("search"))}
+                />
+                <label className="btn btn-outline-primary" htmlFor="btnradio1">
+                  Generale
+                </label>
+
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="btnradio"
+                  id="btnradio2"
+                  autoComplete="off"
+                  onClick={() => dispatch(jobSearchKindUpdate("company"))}
+                />
+                <label className="btn btn-outline-primary" htmlFor="btnradio2">
+                  Azienda
+                </label>
+
+                <input
+                  type="radio"
+                  className="btn-check"
+                  name="btnradio"
+                  id="btnradio3"
+                  autoComplete="off"
+                  onClick={() => dispatch(jobSearchKindUpdate("category"))}
+                />
+                <label className="btn btn-outline-primary" htmlFor="btnradio3">
+                  Categoria
+                </label>
+              </div>
+            </div>
+          </div>
+          {!id ? (
+            <>
+              {items.map((job) => (
+                <JobCard key={job._id} job={job} />
+              ))}
+            </>
+          ) : (
+            <JobCard back details job={items[0]} />
+          )}
+        </div>
+        <div className=" col-3">
+          <BookmarksCard />
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Jobs;
+/*
+          <div className="card">
+            <div className="card-body">
+              <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
                 <label className="btn btn-outline-primary" htmlFor="btnradio1">
                   Generale
@@ -111,19 +162,4 @@ const Jobs = () => {
               </div>
             </div>
           </div>
-          {!id ? (
-            <>
-              <BookmarksCard />
-              {items.map((job) => (
-                <JobCard key={job._id} job={job} />
-              ))}
-            </>
-          ) : (
-            <JobCard back details job={items[0]} />
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-export default Jobs;
+          */

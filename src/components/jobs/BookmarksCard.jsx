@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BookmarksCard = () => {
   const jobsBookmark = useSelector((state) => state.job.bookmarks);
   return (
-    <div className="card my-4">
+    <div className="card">
       <div className="card-body pb-0">
         <div className="card-title">
           <h2 className="m-0">Le mie offerte di lavoro</h2>

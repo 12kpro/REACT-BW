@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 const SiteNav = () => {
   const [searchText, setSearchText] = useState("");
+  const dispatch = useDispatch();
+  const { kind } = useParams();
 
-  const handleSearchText = (e) => {
-    console.log(e);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(kind);
   };
   return (
     <div className="fixed-top bg-white border-bottom " style={{ height: "55px" }}>
@@ -26,19 +30,21 @@ const SiteNav = () => {
           </div>
         </Link>
         <div className="position-relative" style={{ paddingRight: "110px" }}>
-          <input
-            className="border border-0 rounded"
-            type="text"
-            placeholder="Cerca"
-            style={{
-              width: "280px",
-              height: "34px",
-              backgroundColor: "#eef3f8",
-              paddingRight: "0.8rem",
-              paddingLeft: "40px"
-            }}
-            onChange={(e) => setSearchText(e.target.value)}
-          ></input>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="border border-0 rounded"
+              type="text"
+              placeholder="Cerca"
+              style={{
+                width: "280px",
+                height: "34px",
+                backgroundColor: "#eef3f8",
+                paddingRight: "0.8rem",
+                paddingLeft: "40px"
+              }}
+              onChange={(e) => setSearchText(e.target.value)}
+            ></input>
+          </form>
           <div
             className="position-absolute top-0 start-0 d-flex justify-content-center align-items-center fw-bold"
             style={{ width: "40px", height: "34px" }}
@@ -96,7 +102,7 @@ const SiteNav = () => {
               </Link>
             </li>
             <li className="d-flex me-4">
-              <Link className="text-decoration-none" to="/jobs">
+              <Link className="text-decoration-none" to="/jobs/search">
                 <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
