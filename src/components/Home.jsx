@@ -1,37 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import UserMain from "./profile/UserMain";
-import { useEffect } from "react";
-import { addUserData, addUsers, getUserExperiences } from "../redux/action";
-import CardTitle from "./profile/CardTitle";
-import CardListItem from "./profile/CardListItem";
-import { Link } from "react-router-dom";
-import CardSlider from "./profile/CardSlider";
+import { useEffect, useState } from "react";
+import { addUserData, addUsers } from "../redux/action";
 import AsideBox from "./aside/AsideBox";
-import { suggestedCards } from "../helpers/cards";
-import ExperienceCard from "./experience/ExperienceCard";
-import ExperiencesMain from "./experience/ExperiencesMain";
-import PostsMain from "./posts/PostsMain";
+import PostCard from "./posts/PostCard";
+import PostsModal from "./posts/PostsModal";
+import PhotoUploadModal from "./profile/PhotoUploadModal";
+import { getUserPosts } from "../redux/action/posts";
 const Home = () => {
+  /*
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
   const users = useSelector((state) => state.users);
-  const userExperiences = useSelector((state) => state.experieces);
+  */
+  const posts = useSelector((state) => state.posts);
+  const [selectedId, setSelectedId] = useState();
 
-  useEffect(() => {
-    if (!userData) {
-      dispatch(addUserData());
-    }
-  }, []);
-  useEffect(() => {
-    if (userData) {
-      if (!users.length) {
-        dispatch(addUsers());
-      }
-      if (!userExperiences.length) {
-        dispatch(getUserExperiences(userData._id));
-      }
-    }
-  }, [userData]);
   return (
     <div className="container">
       <div className="row">
@@ -103,24 +86,24 @@ const Home = () => {
           <AsideBox title="Persone che potresti conoscere" />
         </aside> */}
         <div className=" col-3">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
+          <div className="card">
+            <img src="..." className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title">Card title</h5>
+              <p className="card-text">
                 Some quick example text to build on the card title and make up the bulk of the card's content.
               </p>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">An item</li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">An item</li>
+              <li className="list-group-item">A second item</li>
+              <li className="list-group-item">A third item</li>
             </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">
+            <div className="card-body">
+              <a href="#" className="card-link">
                 Card link
               </a>
-              <a href="#" class="card-link">
+              <a href="#" className="card-link">
                 Another link
               </a>
             </div>
@@ -159,7 +142,11 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <PostsMain edit />
+          {posts.map((post) => (
+            <PostCard key={post._id} edit post={post} setId={setSelectedId} />
+          ))}
+          <PostsModal id={selectedId} />
+          <PhotoUploadModal id={selectedId} dataProp="post" />
         </div>
         <div className="col-3 d-none d-md-block">
           <aside>

@@ -1,15 +1,25 @@
 import { useSelector } from "react-redux";
-import { useState } from "react";
-//import ExperienceCard from "./ExperienceCard";
-//import ExperiencesModal from "./ExperiencesModal";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PhotoUploadModal from "../profile/PhotoUploadModal";
 import PostsModal from "./PostsModal";
-import PostCard from "./PostCard";
+import PostListCard from "./PostListCard";
 
 const PostsMain = ({ edit, back = false }) => {
-  const items = useSelector((state) => state.posts);
-  const [selectedId, setSelectedId] = useState();
+  const posts = useSelector((state) => state.posts);
+  const userData = useSelector((state) => state.userData);
+
+  const [selectedId, setSelectedId] = useState("");
+  const [userPosts, setUserPosts] = useState([]);
+  useEffect(() => {
+    console.log(posts);
+    if (userData)
+      setUserPosts(
+        posts.filter((post) => {
+          if (post.user) return post.user._id === userData._id;
+        })
+      );
+  }, [posts, userData]);
 
   return (
     <div className="card mt-2">
@@ -17,7 +27,7 @@ const PostsMain = ({ edit, back = false }) => {
         <div className="card-title">
           <div className="d-flex align-items-center">
             {back && (
-              <Link className="btn btn-linkedin rounded-circle" to="/">
+              <Link className="btn btn-linkedin rounded-circle" to="/profile">
                 <i className="bi bi-arrow-left"></i>
               </Link>
             )}
@@ -28,8 +38,12 @@ const PostsMain = ({ edit, back = false }) => {
                 Solo per te
               </p>
             </div>
-
-            <button className="btn btn-linkedin rounded-circle" data-bs-toggle="modal" data-bs-target="#PostsForm">
+            <button
+              className="btn btn-linkedin rounded-circle"
+              data-bs-toggle="modal"
+              data-bs-target="#PostsForm"
+              onClick={() => setSelectedId("")}
+            >
               <i className="bi bi-plus"></i>
             </button>
             {edit && (
@@ -41,21 +55,21 @@ const PostsMain = ({ edit, back = false }) => {
         </div>
         <ul className="list-unstyled items-list m-0">
           {edit
-            ? items.slice(0, 5).map((post) => <PostCard key={post._id} post={post} />)
-            : items.map((post) => <PostCard key={post._id} edit post={post} setId={setSelectedId} />)}
+            ? userPosts.slice(0, 5).map((post) => <PostListCard key={post._id} post={post} />)
+            : userPosts.map((post) => <PostListCard key={post._id} edit post={post} setId={setSelectedId} />)}
         </ul>
       </div>
       {edit && (
         <div className="card-footer bg-white text-body text-center">
           <Link to="/posts" className="text-secondary text-decoration-none">
-            Mostra tutte le attività {items.length ? <>&#40; {items.length} &#41;</> : ""}
+            Mostra tutte le attività {userPosts.length ? <>&#40; {userPosts.length} &#41;</> : ""}
             <i className="bi bi-arrow-right"></i>
           </Link>
         </div>
       )}
 
       <PostsModal id={selectedId} />
-      <PhotoUploadModal id={selectedId} dataProp="experience" />
+      <PhotoUploadModal id={selectedId} dataProp="post" />
     </div>
   );
 };

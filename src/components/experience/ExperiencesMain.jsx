@@ -15,7 +15,7 @@ const ExperiencesMain = ({ edit, back = false }) => {
         <div className="card-title">
           <div className="d-flex align-items-center">
             {back && (
-              <Link className="btn btn-linkedin rounded-circle" to="/">
+              <Link className="btn btn-linkedin rounded-circle" to="/profile">
                 <i className="bi bi-arrow-left"></i>
               </Link>
             )}

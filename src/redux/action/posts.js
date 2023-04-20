@@ -1,5 +1,5 @@
 const AUTHORIZATION = `Bearer ${process.env.REACT_APP_API_KEY}`;
-const BASE_URL = "https://striveschool-api.herokuapp.com/api/posts/";
+const BASE_POST_URL = "https://striveschool-api.herokuapp.com/api/posts/";
 
 export const GET_USER_POSTS = "GET_USER_POSTS";
 export const POST_USER_POST = "POST_USER_POST";
@@ -9,14 +9,14 @@ export const DELETE_USER_POST = "DELETE_USER_POST";
 export const getUserPosts = () => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}`, {
+      let resp = await fetch(`${BASE_POST_URL}`, {
         headers: {
           Authorization: AUTHORIZATION
         }
       });
       if (resp.ok) {
         let data = await resp.json();
-        dispatch({ type: GET_USER_POSTS, payload: data.slice(0, 15) });
+        dispatch({ type: GET_USER_POSTS, payload: data });
         console.log(data);
       } else {
         console.log("error");
@@ -29,10 +29,10 @@ export const getUserPosts = () => {
   };
 };
 
-export const postUserPost = (postId, body) => {
+export const postUserPost = (userData, postId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}${postId}`, {
+      let resp = await fetch(`${BASE_POST_URL}${postId}`, {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION,
@@ -42,7 +42,8 @@ export const postUserPost = (postId, body) => {
       });
       if (resp.ok) {
         let data = await resp.json();
-        //dispatch({ type: POST_USER_POST, payload: data });
+        data.user = userData;
+        dispatch({ type: POST_USER_POST, payload: data });
       } else {
         console.log("error");
       }
@@ -54,10 +55,10 @@ export const postUserPost = (postId, body) => {
   };
 };
 
-export const putUserPost = (postId, body) => {
+export const putUserPost = (userData, postId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}${postId}`, {
+      let resp = await fetch(`${BASE_POST_URL}${postId}`, {
         method: "PUT",
         headers: {
           Authorization: AUTHORIZATION,
@@ -66,9 +67,10 @@ export const putUserPost = (postId, body) => {
         body
       });
       if (resp.ok) {
-        //let data = await resp.json();
+        let data = await resp.json();
+        data.user = userData;
         //console.log(data);
-        //dispatch({ type: PUT_USER_POST, id: expId, payload: JSON.parse(body) });
+        dispatch({ type: PUT_USER_POST, id: postId, payload: data });
       } else {
         console.log("error");
       }
@@ -83,7 +85,7 @@ export const putUserPost = (postId, body) => {
 export const deleteUserPost = (postId) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_URL}${postId}`, {
+      let resp = await fetch(`${BASE_POST_URL}${postId}`, {
         method: "DELETE",
         headers: {
           Authorization: AUTHORIZATION,

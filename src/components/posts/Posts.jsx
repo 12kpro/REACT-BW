@@ -4,8 +4,9 @@ import { getUserPosts } from "../../redux/action/posts";
 import CardTitle from "../profile/CardTitle";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import PostCard from "./PostCard";
+import PostCard from "./PostListCard";
 import PostsModal from "./PostsModal";
+import PostsMain from "./PostsMain";
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -35,27 +36,11 @@ const Posts = () => {
     }
   }, [userData]);
   return (
-    <div
-      className="container"
-      style={{
-        marginTop: "50px",
-        marginLeft: "31px"
-        /* paddingRight: "300px", */
-      }}
-    >
+    <div className="container">
       <div className="row">
-        <div className="col-1 d-none d-lg-block" style={{ width: "10%" }}></div>
-        <div className="col-8 col-md-12" style={{ width: "63%" }}>
-          <div className="card mt-2">
-            <div className="card-body">
-              <CardTitle title="Attività" />
-              <ul className="list-unstyled">
-                {userPosts.map((Post) => (
-                  <PostCard key={Post._id} edit Post={Post} setId={setSelectedId} />
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="col-1 d-none d-lg-block"></div>
+        <div className="col-8 col-md-12">
+          <PostsMain back />
         </div>
       </div>
       <PostsModal id={selectedId} />

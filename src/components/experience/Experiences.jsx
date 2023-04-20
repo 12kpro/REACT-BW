@@ -36,17 +36,10 @@ const Experiences = () => {
     }
   }, [userData]);
   return (
-    <div
-      className="container"
-      style={{
-        marginTop: "50px",
-        marginLeft: "31px"
-        /* paddingRight: "300px", */
-      }}
-    >
+    <div className="container">
       <div className="row">
-        <div className="col-1 d-none d-lg-block" style={{ width: "10%" }}></div>
-        <div className="col-8 col-md-12" style={{ width: "63%" }}>
+        <div className="col-1 d-none d-lg-block"></div>
+        <div className="col-8 col-md-12">
           <ExperiencesMain back />
         </div>
       </div>

@@ -35,7 +35,9 @@ const PostsModal = ({ id = null }) => {
     const formPost = {
       text: text
     };
-    id ? dispatch(putUserPost(id, JSON.stringify(formPost))) : dispatch(postUserPost(id, JSON.stringify(formPost)));
+    id
+      ? dispatch(putUserPost(userData, id, JSON.stringify(formPost)))
+      : dispatch(postUserPost(userData, id, JSON.stringify(formPost)));
   };
   return (
     <>
@@ -44,7 +46,7 @@ const PostsModal = ({ id = null }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                {`${userData.name} ${userData.surname}`}
+                {userData && `${userData.name} ${userData.surname}`}
               </h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               <p>Pubblica:Chiunque</p>
@@ -83,7 +85,7 @@ const PostsModal = ({ id = null }) => {
                 type="button"
                 className="btn btn-primary"
                 data-bs-toggle="modal"
-                data-bs-target="#confirmModal"
+                data-bs-target="#confirmPostModal"
                 onClick={() => setSave(true)}
               >
                 {id ? "Modifica" : "Salva"}
@@ -93,7 +95,7 @@ const PostsModal = ({ id = null }) => {
                   type="button"
                   className="btn btn-danger"
                   data-bs-toggle="modal"
-                  data-bs-target="#confirmModal"
+                  data-bs-target="#confirmPostModal"
                   onClick={() => setSave(false)}
                 >
                   Elimina
@@ -103,18 +105,16 @@ const PostsModal = ({ id = null }) => {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="confirmModal" tabIndex="-1" aria-labelledby="confirmModal" aria-hidden="true">
+      <div className="modal fade" id="confirmPostModal" tabIndex="-1" aria-labelledby="confirmModal" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-title fs-5" id="confirmPostModalLabel">
                 Conferma operazione
               </h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className="modal-body">
-              L&#180;esperienza verrà {save ? (id ? "Modificata" : "Salvata") : "Eliminata"}
-            </div>
+            <div className="modal-body">IL post verrà {save ? (id ? "Modificata" : "Salvata") : "Eliminata"}</div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Annulla

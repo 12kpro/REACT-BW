@@ -1,3 +1,5 @@
+import { PUT_USER_POST } from "./posts";
+
 const AUTHORIZATION = `Bearer ${process.env.REACT_APP_API_KEY}`;
 const BASE_URL = "https://striveschool-api.herokuapp.com/api";
 /*
@@ -20,7 +22,7 @@ export const postPicture = (id, body, type, userId) => {
     let path = "";
     if (type === "experience") {
       path = `/profile/${userId}/experiences/${id}/picture`;
-    } else if (path === "post") {
+    } else if (type === "post") {
       path = `/posts/${id}`;
     } else {
       path = `/profile/${userId}/picture`;
@@ -42,8 +44,8 @@ export const postPicture = (id, body, type, userId) => {
         console.log(data);
         if (type === "experience") {
           dispatch({ type: PUT_USER_EXPERIENCE, id: id, payload: data });
-        } else if (path === "post") {
-          //dispatch({ type: ADD_USER_DATA, payload: data });
+        } else if (type === "post") {
+          dispatch({ type: PUT_USER_POST, id: id, payload: data });
         } else {
           //dispatch({ type: ADD_USER_DATA, payload: data });
         }
