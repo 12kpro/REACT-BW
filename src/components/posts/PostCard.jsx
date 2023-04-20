@@ -34,7 +34,6 @@ const PostCard = ({ post, edit, setId }) => {
             </>
           )}
         </div>
-
         <p className="card-text">{post.text}</p>
         {post.image && <img src={post.image} className="img-fluid" />}
         <div className="d-flex justify-content-between">

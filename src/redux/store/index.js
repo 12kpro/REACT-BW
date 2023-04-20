@@ -6,6 +6,7 @@ import userDataReducer from "../reducers/userDataReducer";
 import usersReducer from "../reducers/usersReducer";
 import experiencesReducer from "../reducers/experiencesReducer";
 import postsDataReducer from "../reducers/postsReducer";
+import jobReducer from "../reducers/jobReducer";
 
 const persistConfig = {
   key: "root",
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   userData: userDataReducer,
   users: usersReducer,
   experieces: experiencesReducer,
-  posts: postsDataReducer
+  posts: postsDataReducer,
+  job: jobReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

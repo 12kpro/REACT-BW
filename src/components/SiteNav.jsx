@@ -1,5 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 const SiteNav = () => {
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearchText = (e) => {
+    console.log(e);
+  };
   return (
     <div className="fixed-top bg-white border-bottom " style={{ height: "55px" }}>
       <div className="d-flex align-items-center justify-content-center mt-0">
@@ -31,6 +37,7 @@ const SiteNav = () => {
               paddingRight: "0.8rem",
               paddingLeft: "40px"
             }}
+            onChange={(e) => setSearchText(e.target.value)}
           ></input>
           <div
             className="position-absolute top-0 start-0 d-flex justify-content-center align-items-center fw-bold"
@@ -89,7 +96,7 @@ const SiteNav = () => {
               </Link>
             </li>
             <li className="d-flex me-4">
-              <Link className="text-decoration-none" to="/">
+              <Link className="text-decoration-none" to="/jobs">
                 <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +153,7 @@ const SiteNav = () => {
               </Link>
             </li>
             <li className="d-flex border-end me-3" style={{ height: "48px" }}>
-              <Link className="text-decoration-none" to="/">
+              <Link className="text-decoration-none" to="/profile">
                 <div className="d-flex justify-content-center pt-1">
                   <button className="bg-transparent border border-0 pe-4">
                     <img

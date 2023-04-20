@@ -6,6 +6,7 @@ import Experiences from "./components/experience/Experiences";
 import Posts from "./components/posts/Posts";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
+import Jobs from "./components/Jobs";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUserData, addUsers, getUserExperiences } from "./redux/action";
@@ -19,7 +20,6 @@ function App() {
   const userExperiences = useSelector((state) => state.experieces);
 
   useEffect(() => {
-    console.log("fetch userdata");
     if (!userData) {
       dispatch(addUserData());
     }
@@ -45,6 +45,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/experience" element={<Experiences />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/currentjob/:id" element={<Jobs />} />
       </Routes>
     </BrowserRouter>
   );
