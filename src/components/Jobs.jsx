@@ -25,7 +25,7 @@ const Jobs = () => {
     <div className="container">
       <div className="row">
         <div className=" col-3">
-          <div className="card">
+          <div className="card sticky-top">
             <ul className="list-group list-group-flush">
               {menuLink.map((item, i) => (
                 <li key={`jobs-menu-${i}`} className="list-group-item">
@@ -39,7 +39,7 @@ const Jobs = () => {
           </div>
         </div>
         <div className="col-6">
-          <div className="card">
+          <div className="card mb-4">
             <div className="card-body">
               <h3>Seleziona tipo di ricerca</h3>
               <div className="btn-group w-100" role="group" aria-label="Basic radio toggle button group">
