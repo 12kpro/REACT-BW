@@ -22,3 +22,12 @@
   border: 2px solid transparent;
   border-radius: 50%;
 }
+
+.sticky-top {
+  top: 80px;
+}
+
+.footer-home {
+  position: sticky;
+  top: 320px;
+}

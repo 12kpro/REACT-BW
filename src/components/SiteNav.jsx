@@ -19,7 +19,7 @@ const SiteNav = () => {
     }
   };
   return (
-    <div className="fixed-top bg-white border-bottom " style={{ height: "55px" }}>
+    <div className="fixed-top bg-white border-bottom" style={{ height: "55px" }}>
       <div className="d-flex align-items-center justify-content-center mt-0">
         <Link className="text-decoration-none" to="/">
           <div className="my-0 mx-2">
@@ -244,7 +244,7 @@ const SiteNav = () => {
                     color: "#bd8731",
                     maxWidth: "125px",
                     textDecoration: "underline",
-                    lineHeight: "15px"
+                    lineHeight: "15px",
                   }}
                 >
                   Una rete più smart? Prova Premium gratuitamente
