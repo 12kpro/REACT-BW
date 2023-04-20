@@ -222,3 +222,28 @@ export const addUserData = () => {
     }
   };
 };
+
+export const putUserData = (body) => {
+  return async (dispatch) => {
+    try {
+      let resp = await fetch(`${BASE_URL}/profile/`, {
+        method: "PUT",
+        headers: {
+          Authorization: AUTHORIZATION,
+          "Content-Type": "application/json"
+        },
+        body
+      });
+      if (resp.ok) {
+        let data = await resp.json();
+        dispatch({ type: ADD_USER_DATA, payload: data });
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("fetch loading finish");
+    }
+  };
+};

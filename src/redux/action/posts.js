@@ -92,7 +92,7 @@ export const deleteUserPost = (postId) => {
         }
       });
       if (resp.ok) {
-        //dispatch({ type: DELETE_USER_POST, payload: expId });
+        dispatch({ type: DELETE_USER_POST, payload: postId });
       } else {
         console.log("error");
       }

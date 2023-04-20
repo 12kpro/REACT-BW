@@ -1,64 +1,41 @@
 import { useEffect, useState } from "react";
-import { monthArray, yearsArray } from "../../helpers/mixed";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUserExperience, postUserExperience, putUserExperience } from "../../redux/action";
+import { putUserData } from "../../redux/action";
 
-const ModificaProfilo = ({ id = null }) => {
+const ModificaProfilo = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
-  const userExperiences = useSelector((state) => state.experieces);
-  const [role, setRole] = useState("");
 
-  const [description, setDescription] = useState("");
-  const [company, setCompany] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [bio, setBio] = useState("");
+  const [title, setTitle] = useState("");
   const [area, setArea] = useState("");
 
-  const [isCurrentJob, setIsCurrentJob] = useState(true);
-  const [monthStart, setMonthStart] = useState("");
-  const [yearStart, setYearStart] = useState("");
-  const [monthEnd, setMonthEnd] = useState("");
-  const [yearEnd, setYearEnd] = useState("");
-  const [save, setSave] = useState(true);
-
   useEffect(() => {
-    if (id) {
-      const exp = userExperiences.find((exp) => exp._id === id);
-      const currentStartDate = new Date(exp.startDate);
-
-      setRole(exp.role);
-      setCompany(exp.company);
-      setDescription(exp.description);
-      setArea(exp.area);
-
-      setMonthStart(currentStartDate.getMonth());
-      setYearStart(currentStartDate.getFullYear());
-
-      if (exp.endDate) {
-        const currentEndDate = new Date(exp.endDate);
-        setIsCurrentJob(false);
-        setMonthEnd(currentEndDate.getMonth());
-        setYearEnd(currentEndDate.getFullYear());
-      }
+    if (userData) {
+      setName(userData.name);
+      setSurname(userData.surname);
+      setEmail(userData.email);
+      setBio(userData.bio);
+      setTitle(userData.title);
+      setArea(userData.area);
     }
-  }, [id]);
+  }, []);
 
-  const handleDelete = () => {
-    dispatch(deleteUserExperience(userData._id, id));
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const day = new Date().getDate();
     const formData = {
-      role: role,
-      company: company,
-      startDate: `${yearStart}-${monthStart.toString().padStart(2, "0")}-${day}`,
-      endDate: isCurrentJob ? null : `${yearEnd}-${monthEnd.toString().padStart(2, "0")}-${day}`,
-      description: description,
-      area: area,
+      name: name,
+      surname: surname,
+      email: email,
+      bio: bio,
+      title: title,
+      area: area
     };
-    id
-      ? dispatch(putUserExperience(userData._id, id, JSON.stringify(formData)))
-      : dispatch(postUserExperience(userData._id, JSON.stringify(formData)));
+
+    dispatch(putUserData(JSON.stringify(formData)));
   };
   return (
     <>
@@ -66,15 +43,13 @@ const ModificaProfilo = ({ id = null }) => {
         className="modal fade modal-lg"
         id="profiloForm"
         tabIndex="-1"
-        aria-labelledby="experiencesForm"
+        aria-labelledby="profiloForm"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modifica il tuo profilo
-              </h1>
+              <h1 className="modal-title fs-5">Modifica il tuo profilo</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -89,12 +64,12 @@ const ModificaProfilo = ({ id = null }) => {
                       <input
                         type="text"
                         className="form-control"
-                        id="role"
+                        id="name"
                         aria-describedby="role"
-                        placeholder={`${userData.name}`}
-                        onChange={(e) => setRole(e.target.value)}
+                        placeholder="Nome"
+                        onChange={(e) => setName(e.target.value)}
                         required
-                        value={role}
+                        value={name}
                       />
                     </div>
                     <div className="mb-3">
@@ -104,27 +79,55 @@ const ModificaProfilo = ({ id = null }) => {
                       <input
                         type="text"
                         className="form-control"
-                        id="role"
+                        id="surname"
                         aria-describedby="role"
-                        placeholder={`${userData.surname}`}
-                        onChange={(e) => setRole(e.target.value)}
+                        placeholder="Cognome"
+                        onChange={(e) => setSurname(e.target.value)}
                         required
-                        value={role}
+                        value={surname}
                       />
                     </div>
                     <div className="mb-3">
                       <label htmlFor="company" className="form-label">
-                        Nome aggiuntivo
+                        E-mail
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        aria-describedby="emailHelp"
+                        placeholder="E-mail"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        value={email}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="area" className="form-label">
+                        Bio
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="bio"
+                        rows="3"
+                        placeholder="Parlaci di te?"
+                        onChange={(e) => setBio(e.target.value)}
+                        required
+                        value={bio}
+                      ></textarea>
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="area" className="form-label">
+                        Titolo
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="company"
-                        aria-describedby="emailHelp"
-                        placeholder=""
-                        onChange={(e) => setCompany(e.target.value)}
+                        id="area"
+                        placeholder="Titolo"
+                        onChange={(e) => setTitle(e.target.value)}
                         required
-                        value={company}
+                        value={title}
                       />
                     </div>
                     <div className="mb-3">
@@ -135,7 +138,7 @@ const ModificaProfilo = ({ id = null }) => {
                         type="text"
                         className="form-control"
                         id="area"
-                        placeholder={`${userData.area}`}
+                        placeholder="Località"
                         onChange={(e) => setArea(e.target.value)}
                         required
                         value={area}
@@ -154,48 +157,33 @@ const ModificaProfilo = ({ id = null }) => {
                 type="button"
                 className="btn btn-primary"
                 data-bs-toggle="modal"
-                data-bs-target="#confirmModal"
-                onClick={() => setSave(true)}
+                data-bs-target="#confirmProfiloFormModal"
               >
-                {id ? "Modifica" : "Salva"}
+                Salva
               </button>
-              {id && (
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  data-bs-toggle="modal"
-                  data-bs-target="#confirmModal"
-                  onClick={() => setSave(false)}
-                >
-                  Elimina
-                </button>
-              )}
             </div>
           </div>
         </div>
       </div>
-      <div className="modal fade" id="confirmModal" tabIndex="-1" aria-labelledby="confirmModal" aria-hidden="true">
+      <div
+        className="modal fade"
+        id="confirmProfiloFormModal"
+        tabIndex="-1"
+        aria-labelledby="confirmModal"
+        aria-hidden="true"
+      >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Conferma operazione
-              </h1>
+              <h1 className="modal-title fs-5">Conferma operazione</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className="modal-body">
-              L&#180;esperienza verrà {save ? (id ? "Modificata" : "Salvata") : "Eliminata"}
-            </div>
+            <div className="modal-body">Sicuro di voler modificare i tuoi dati?</div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Annulla
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-bs-dismiss="modal"
-                onClick={save ? handleSubmit : handleDelete}
-              >
+              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit}>
                 Conferma
               </button>
             </div>
