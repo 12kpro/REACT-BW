@@ -1,14 +1,22 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getJobsSearch } from "../redux/action/jobs";
 const SiteNav = () => {
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
-  const { kind } = useParams();
+  const searchKind = useSelector((state) => state.job.searchKind);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(kind);
+
+    if (searchKind === "search") {
+      dispatch(getJobsSearch({ search: searchText }));
+    } else if (searchKind === "company") {
+      dispatch(getJobsSearch({ company: searchText }));
+    } else if (searchKind === "category") {
+      dispatch(getJobsSearch({ category: searchText, limit: 10 }));
+    }
   };
   return (
     <div className="fixed-top bg-white border-bottom " style={{ height: "55px" }}>
@@ -34,7 +42,7 @@ const SiteNav = () => {
             <input
               className="border border-0 rounded"
               type="text"
-              placeholder="Cerca"
+              placeholder={searchKind}
               style={{
                 width: "280px",
                 height: "34px",

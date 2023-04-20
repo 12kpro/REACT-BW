@@ -24,7 +24,13 @@ const PostListCard = ({ job, edit }) => {
       <div className="card-text">
         <span>{job.company_name}</span>
         &#160; &#183; &#160;
-        <span>{job.publication_date}</span>
+        <span>
+          {new Date(job.publication_date).toLocaleDateString("it-IT", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+          })}
+        </span>
       </div>
       <div className="card-text mb-2">
         <span>{job.candidate_required_location}</span>
