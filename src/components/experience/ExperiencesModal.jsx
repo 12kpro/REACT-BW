@@ -38,6 +38,17 @@ const ExperiencesModal = ({ id = null }) => {
         setMonthEnd(currentEndDate.getMonth());
         setYearEnd(currentEndDate.getFullYear());
       }
+    } else {
+      setRole("");
+      setCompany("");
+      setDescription("");
+      setArea("");
+      setIsCurrentJob(true);
+      setMonthStart("");
+      setYearStart("");
+      setMonthEnd("");
+      setYearEnd("");
+      setSave(true);
     }
   }, [id]);
 

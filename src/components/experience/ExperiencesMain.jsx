@@ -7,7 +7,7 @@ import PhotoUploadModal from "../profile/PhotoUploadModal";
 
 const ExperiencesMain = ({ edit, back = false }) => {
   const items = useSelector((state) => state.experieces);
-  const [selectedId, setSelectedId] = useState();
+  const [selectedId, setSelectedId] = useState("");
 
   return (
     <div className="card mt-2">
@@ -31,6 +31,7 @@ const ExperiencesMain = ({ edit, back = false }) => {
               className="btn btn-linkedin rounded-circle"
               data-bs-toggle="modal"
               data-bs-target="#experiencesForm"
+              onClick={() => setSelectedId("")}
             >
               <i className="bi bi-plus"></i>
             </button>

@@ -22,8 +22,9 @@ const PostsModal = ({ id = null }) => {
   useEffect(() => {
     if (id) {
       const post = userPosts.find((post) => post._id === id);
-
       setText(post.text);
+    } else {
+      setText("");
     }
   }, [id]);
 
