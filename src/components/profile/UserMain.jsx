@@ -4,6 +4,7 @@ import CardSlider from "./CardSlider";
 import ExperiencesModal from "../experience/ExperiencesModal";
 import { userCards } from "../../helpers/cards";
 import ProfilePhotoModal from "./ProfilePhotoModal";
+import ModificaProfilo from "./ModificaProfilo";
 
 const UserMain = () => {
   const userData = useSelector((state) => state.userData);
@@ -31,9 +32,15 @@ const UserMain = () => {
                   </div>
                 </div>
                 <ProfilePhotoModal />
-                <Link className="btn rounded-circle btn-linkedin" to="/">
+                <Link
+                  className="btn rounded-circle btn-linkedin"
+                  data-bs-toggle="modal"
+                  data-bs-target="#profiloForm"
+                  to="/ModificaProfilo"
+                >
                   <i className="bi bi-pencil"></i>
                 </Link>
+                <ModificaProfilo />
               </div>
               <h5 className="card-title">{`${userData.name} ${userData.surname}`}</h5>
               <p className="mb-1">
