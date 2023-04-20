@@ -102,7 +102,7 @@ const SiteNav = () => {
               </Link>
             </li>
             <li className="d-flex me-4">
-              <Link className="text-decoration-none" to="/jobs/search">
+              <Link className="text-decoration-none" to="/jobs">
                 <div className="d-flex justify-content-center pt-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
