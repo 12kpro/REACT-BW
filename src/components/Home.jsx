@@ -8,6 +8,7 @@ import PhotoUploadModal from "./profile/PhotoUploadModal";
 import { getUserPosts } from "../redux/action/posts";
 import ProfilePhotoModal from "./profile/ProfilePhotoModal";
 import { Link } from "react-router-dom";
+import Pagination from "./utils/Pagination";
 
 const Home = () => {
   /*
@@ -16,9 +17,10 @@ const Home = () => {
   const users = useSelector((state) => state.users);
   */
   const posts = useSelector((state) => state.posts);
-  const [selectedId, setSelectedId] = useState();
   const userData = useSelector((state) => state.userData);
-
+  const [selectedId, setSelectedId] = useState();
+  const [start, setStart] = useState(0);
+  const [stop, setStop] = useState(50);
   return (
     <div className="container">
       <div className="row">
@@ -92,15 +94,14 @@ const Home = () => {
         <div className=" col-3">
           <div className="card">
             <div>
-              {" "}
-              {userData.image ? (
+              {userData && userData.image ? (
                 <img className="card-img-top" src={userData.image} />
               ) : (
-                <i class="bi bi-camera"></i>
-              )}{" "}
+                <i className="bi bi-camera"></i>
+              )}
             </div>
             <div className="card-body">
-              <h5 className="card-title">Ti diamo il benvenuto {`${userData.name}`}!</h5>
+              <h5 className="card-title">Ti diamo il benvenuto {userData && userData.name}!</h5>
               <Link to="/" data-bs-toggle="modal" data-bs-target="#UploadPhotoProfile">
                 Aggiungi una foto
               </Link>
@@ -117,7 +118,7 @@ const Home = () => {
                       fontSize: "small",
                       maxWidth: "125px",
                       textDecoration: "underline",
-                      lineHeight: "15px",
+                      lineHeight: "15px"
                     }}
                   >
                     Prova Premium gratuitamente
@@ -135,11 +136,11 @@ const Home = () => {
               </a>
             </div>
           </div>
-          <div class="card mt-2 sticky-top">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Gruppi</li>
-              <li class="list-group-item">Eventi</li>
-              <li class="list-group-item">Hashtag seguiti</li>
+          <div className="card mt-2 sticky-top">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Gruppi</li>
+              <li className="list-group-item">Eventi</li>
+              <li className="list-group-item">Hashtag seguiti</li>
             </ul>
           </div>
         </div>
@@ -177,8 +178,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          {posts.map((post) => (
+          <Pagination total={posts.length} start={start} stop={stop} setStart={setStart} setStop={setStop} />
+          {posts.slice(start, stop).map((post) => (
             <PostCard key={post._id} edit post={post} setId={setSelectedId} />
           ))}
           <PostsModal id={selectedId} />
@@ -189,14 +190,14 @@ const Home = () => {
             <AsideBox title="Persone che potresti conoscere" />
           </aside> */}
 
-          <div class="card">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">An item</li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A third item</li>
+          <div className="card">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">An item</li>
+              <li className="list-group-item">A second item</li>
+              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">A third item</li>
             </ul>
           </div>
           <img

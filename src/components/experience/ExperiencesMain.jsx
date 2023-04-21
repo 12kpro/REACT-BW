@@ -19,7 +19,7 @@ const ExperiencesMain = ({ edit, back = false }) => {
                 <i className="bi bi-arrow-left"></i>
               </Link>
             )}
-            <div className="flex-grow-1">
+            <div className="flex-grow-1 ps-2">
               <h2 className="fs-5 m-0 ">Esperienze</h2>
               <p className="small text-secondary m-0">
                 <i className="bi bi-eye-fill pe-1"></i>

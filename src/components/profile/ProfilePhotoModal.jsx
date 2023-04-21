@@ -26,7 +26,7 @@ function PhotoModal() {
               La tua foto non deve per forza essere <br /> un tuo primo piano! <br />
               Ma qualcosa che ti rappresenti.
             </p>
-            <img src={userData.image} alt="eeeeeeeeh sapessi" />
+            <img src={userData && userData.image} alt="eeeeeeeeh sapessi" />
             <p className="text-center text-dark-emphasis py-4" style={{ fontSize: "small" }}>
               Chiediamo agli utenti di Linkedin di utilizzare le loro vere identità, quindi scatta o <br />
               carica una tua foto. Poi ritagliala, applica dei filtri e perfezionala come vuoi.
