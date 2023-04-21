@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
 import JobCard from "./jobs/JobCard";
+import JobListCard from "./jobs/JobListCard";
 import BookmarksCard from "./jobs/BookmarksCard";
 import { jobSearchKindUpdate } from "../redux/action/jobs";
 const Jobs = () => {
   const items = useSelector((state) => state.job.searchResults);
+  const jobsBookmark = useSelector((state) => state.job.bookmarks);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -14,11 +16,11 @@ const Jobs = () => {
     dispatch(jobSearchKindUpdate("search"));
   }, []);
   const menuLink = [
-    { icon: "bi-bookmark-fill", text: "Le mie offerte di lavoro" },
+    //  { icon: "bi-bookmark-fill", text: "Le mie offerte di lavoro" },
     { icon: "bi-bell-fill", text: "Avvisi offerte di lavoro" },
     { icon: "bi-journal-check", text: "Valutazioni delle competenze" },
     { icon: "bi-play-btn-fill", text: "Indicazioni per chi cerca" },
-    { icon: "bi-gear-fill", text: "Impostazioni candidatura" },
+    { icon: "bi-gear-fill", text: "Impostazioni candidatura" }
   ];
 
   return (
@@ -27,6 +29,23 @@ const Jobs = () => {
         <div className=" col-12 col-md-4 col-lg-3 col-xl-3">
           <div className="card sticky-top">
             <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <button
+                  className="btn text-decoration-none d-flex align-items-center"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#jobsBookmark"
+                >
+                  <i className="fs-4 me-2 bi bi-bookmark-fill"></i>
+                  Le mie offerte di lavoro
+                </button>
+                <div class="collapse" id="jobsBookmark">
+                  <ul className="list-unstyled items-list m-0">
+                    {jobsBookmark.slice(0, 5).map((job) => (
+                      <JobListCard key={job._id} job={job} edit />
+                    ))}
+                  </ul>
+                </div>
+              </li>
               {menuLink.map((item, i) => (
                 <li key={`jobs-menu-${i}`} className="list-group-item">
                   <Link to="/" className="text-decoration-none d-flex align-items-center">
@@ -36,9 +55,6 @@ const Jobs = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="jobs-offerte">
-            <BookmarksCard />
           </div>
         </div>
         <div className="col-12 col-md-8 col-lg-6">
