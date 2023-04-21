@@ -49,7 +49,7 @@ const SiteNav = () => {
                       height: "34px",
                       backgroundColor: "#eef3f8",
                       paddingRight: "0.8rem",
-                      paddingLeft: "40px",
+                      paddingLeft: "40px"
                     }}
                     onChange={(e) => setSearchText(e.target.value)}
                   ></input>
@@ -127,7 +127,7 @@ const SiteNav = () => {
               </Link>
             </button>
             <button className="btn me-2" type="button">
-              <Link className="text-decoration-none nav-link" to="/">
+              <Link className="text-decoration-none nav-link" to="/jobs">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -211,7 +211,7 @@ const SiteNav = () => {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <button className="btn me-2" type="button">
-                <Link className="text-decoration-none nav-link" to="/">
+                <Link className="text-decoration-none nav-link" to="/profile">
                   <img src={userData.image} className="rounded-circle mb-0" style={{ height: "24px", width: "24px" }} />
                   <span className="d-none d-lg-block" style={{ color: "#666", fontSize: "small" }}>
                     Tu{" "}
@@ -272,7 +272,7 @@ const SiteNav = () => {
                       color: "#bd8731",
                       maxWidth: "125px",
                       textDecoration: "underline",
-                      lineHeight: "15px",
+                      lineHeight: "15px"
                     }}
                   >
                     Una rete più smart? Prova Premium gratuitamente
@@ -285,7 +285,7 @@ const SiteNav = () => {
                       color: "#bd8731",
                       maxWidth: "125px",
                       textDecoration: "underline",
-                      lineHeight: "15px",
+                      lineHeight: "15px"
                     }}
                   >
                     Prova Premium Gratis
