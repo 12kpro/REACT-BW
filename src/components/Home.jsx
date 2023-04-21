@@ -89,7 +89,7 @@ const Home = () => {
         <aside className="col-3">
           <AsideBox title="Persone che potresti conoscere" />
         </aside> */}
-        <div className=" col-3">
+        <div className=" col-12 col-md-4 col-lg-3 col-xl-3">
           <div className="card">
             <div>
               {" "}
@@ -144,7 +144,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="col-6">
+        <div className=" col-12 col-md-8 col-lg-6">
           <div className="card mb-3">
             <div className="card-body">
               <div className="d-flex mb-3">
@@ -184,7 +184,7 @@ const Home = () => {
           <PostsModal id={selectedId} />
           <PhotoUploadModal id={selectedId} dataProp="post" />
         </div>
-        <div className="col-3 d-none d-md-block">
+        <div className="col-12 col-lg-3 col-xl-3">
           {/*  <aside>
             <AsideBox title="Persone che potresti conoscere" />
           </aside> */}
@@ -203,8 +203,8 @@ const Home = () => {
             src="https://media.licdn.com/media/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png"
             alt="Advertise on LinkedIn"
             border="0"
-            className="sticky-top mt-2 rounded"
-            style={{ width: "262px" }}
+            className="sticky-top mt-2 rounded img-fluid"
+            // style={{ width: "262px" }}
           ></img>
 
           <div className="mt-4 footer-home">
