@@ -32,7 +32,7 @@ export const getUserPosts = () => {
 export const postUserPost = (userData, postId, body) => {
   return async (dispatch) => {
     try {
-      let resp = await fetch(`${BASE_POST_URL}${postId}`, {
+      let resp = await fetch(`${BASE_POST_URL}`, {
         method: "POST",
         headers: {
           Authorization: AUTHORIZATION,
