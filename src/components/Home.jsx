@@ -30,13 +30,13 @@ const Home = () => {
             </div>
             <div className="card-body">
               <h5 className="card-title">Ti diamo il benvenuto {userData && userData.name}!</h5>
-              <Link to="/" data-bs-toggle="modal" data-bs-target="#UploadPhotoProfile">
+              <Link to="/" data-bs-toggle="modal" data-bs-target="#UploadPhotoProfile" className="small">
                 Aggiungi una foto
               </Link>
               <ProfilePhotoModal />
             </div>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">Collegamenti</li>
+              <li className="list-group-item footer-links">Collegamenti</li>
               <li className="list-group-item">
                 <Link className="text-decoration-none" to="/">
                   <div className="d-flex justify-content-center"></div>
@@ -46,29 +46,21 @@ const Home = () => {
                       fontSize: "small",
                       maxWidth: "125px",
                       textDecoration: "underline",
-                      lineHeight: "15px"
+                      lineHeight: "15px",
                     }}
                   >
                     Prova Premium gratuitamente
                   </p>
                 </Link>
               </li>
-              <li className="list-group-item">I miei elementi</li>
+              <li className="list-group-item footer-links">I miei elementi</li>
             </ul>
-            <div className="card-body">
-              <a href="#" className="card-link">
-                Card link
-              </a>
-              <a href="#" className="card-link">
-                Another link
-              </a>
-            </div>
           </div>
           <div className="card mt-2 sticky-top">
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">Gruppi</li>
-              <li className="list-group-item">Eventi</li>
-              <li className="list-group-item">Hashtag seguiti</li>
+              <li className="list-group-item text-card-home">Gruppi</li>
+              <li className="list-group-item text-card-home">Eventi</li>
+              <li className="list-group-item text-card-home">Hashtag seguiti</li>
             </ul>
           </div>
         </div>
@@ -83,13 +75,13 @@ const Home = () => {
                   className="photo-circle flex-shrink-0"
                 />
                 <button
-                  className="rounded-pill flex-grow-1 mx-2 py-2"
+                  className="rounded-pill flex-grow-1 mx-2 py-2 border-1 border-0"
                   data-bs-toggle="modal"
                   data-bs-target="#PostsForm"
                 >
                   Avvia un post
                 </button>
-                <button className="btn btn-linkedin rounded-circle" onClick={() => dispatch(getUserPosts())}>
+                <button className="btn btn-linkedin rounded-circle " onClick={() => dispatch(getUserPosts())}>
                   <i class="bi bi-arrow-repeat"></i>
                 </button>
               </div>
@@ -127,12 +119,33 @@ const Home = () => {
 
           <div className="card">
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">An item</li>
-              <li className="list-group-item">A second item</li>
-              <li className="list-group-item">A third item</li>
-              <li className="list-group-item">A third item</li>
-              <li className="list-group-item">A third item</li>
-              <li className="list-group-item">A third item</li>
+              <li className="list-group-item border-0">
+                <h6> Linkedin notizie</h6>
+              </li>
+              <li className="list-group-item border-0 py-0">
+                <p className="mb-1 mt-0 list-home"> Linkedin notizie</p>
+                <p className="copyright mb-1 mt-0">Notizia</p>
+              </li>
+              <li className="list-group-item border-0 py-0">
+                <p className="mb-1 mt-0 list-home"> Linkedin notizie</p>
+
+                <p className="copyright mb-1 mt-0">Notizia</p>
+              </li>
+              <li className="list-group-item border-0 py-0">
+                <p className="mb-1 mt-0 list-home"> Linkedin notizie</p>
+
+                <p className="copyright mb-1 mt-0">Notizia</p>
+              </li>
+              <li className="list-group-item border-0 py-0">
+                <p className="mb-1 mt-0 list-home"> Linkedin notizie</p>
+
+                <p className="copyright mb-1 mt-0">Notizia</p>
+              </li>
+              <li className="list-group-item border-0 py-0">
+                <p className="mb-1 mt-0 list-home"> Linkedin notizie</p>
+
+                <p className="copyright mb-1 mt-0">Notizia</p>
+              </li>
             </ul>
           </div>
           <img
