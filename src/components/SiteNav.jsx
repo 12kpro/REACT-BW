@@ -44,7 +44,7 @@ const SiteNav = () => {
               height: "34px",
               backgroundColor: "#eef3f8",
               paddingRight: "0.8rem",
-              paddingLeft: "40px"
+              paddingLeft: "40px",
             }}
             onChange={(e) => setSearchText(e.target.value)}
           ></input>
@@ -167,7 +167,7 @@ const SiteNav = () => {
             </Link>
             <ul class="dropdown-menu">
               <li>
-                <Link class="dropdown-item" to="/">
+                <Link class="dropdown-item" to="/profile">
                   Profilo
                 </Link>
               </li>
