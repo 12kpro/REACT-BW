@@ -105,7 +105,7 @@ const Profile = () => {
         <aside className="col-3">
           <AsideBox title="Persone che potresti conoscere" />
         </aside> */}
-          <div className="col-8">
+          <div className="col-12 col-md-8">
             <UserMain />
             <div>
               <div className="card mt-2">
@@ -153,7 +153,7 @@ const Profile = () => {
               <ExperiencesMain edit />
             </div>
           </div>
-          <div className="col-3 d-none d-md-block">
+          <div className="col-12 col-md-4 col-lg-3 col-xl-3">
             <aside>
               <AsideBox title="Persone che potresti conoscere" />
             </aside>
