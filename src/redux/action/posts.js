@@ -16,7 +16,8 @@ export const getUserPosts = () => {
       });
       if (resp.ok) {
         let data = await resp.json();
-        dispatch({ type: GET_USER_POSTS, payload: data });
+        let latest = data.filter((post) => new Date(post.createdAt).getFullYear() >= 2023).reverse();
+        dispatch({ type: GET_USER_POSTS, payload: latest });
       } else {
         console.log("error");
       }

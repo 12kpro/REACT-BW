@@ -1,106 +1,35 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { addUserData, addUsers } from "../redux/action";
-import AsideBox from "./aside/AsideBox";
+import { useState } from "react";
+
 import PostCard from "./posts/PostCard";
 import PostsModal from "./posts/PostsModal";
 import PhotoUploadModal from "./profile/PhotoUploadModal";
 import { getUserPosts } from "../redux/action/posts";
 import ProfilePhotoModal from "./profile/ProfilePhotoModal";
 import { Link } from "react-router-dom";
+import Pagination from "./utils/Pagination";
 
 const Home = () => {
-  /*
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.userData);
-  const users = useSelector((state) => state.users);
-  */
   const posts = useSelector((state) => state.posts);
-  const [selectedId, setSelectedId] = useState();
   const userData = useSelector((state) => state.userData);
-
+  const [selectedId, setSelectedId] = useState();
+  const [start, setStart] = useState(0);
+  const [stop, setStop] = useState(50);
   return (
     <div className="container">
       <div className="row">
-        {/*}   <main className="col-7 offset-2">
-          <div className="row">
-            <UserMain />
-            <div className="col-12">
-              <div className="card mt-2">
-                <div className="card-body">
-                  <CardTitle title="Consigliato per te" />
-                  <CardSlider />
-                </div>
-              </div>
-              <div className="card mt-2">
-                <div className="card-body">
-                  <CardTitle title="Analisi" />
-                  <ul className="list-unstyled">
-                    <CardListItem
-                      icon="bi-people-fill"
-                      title="0 visualizzazioni del profilo"
-                      txt="Aggiorna il tuo profilo per attrarre visitatori."
-                    />
-                  </ul>
-                </div>
-              </div>
-              <div className="card mt-2">
-                <div className="card-body">
-                  <CardTitle title="Risorse" />
-                  <ul className="list-unstyled">
-                    <CardListItem
-                      icon="bi-broadcast-pin"
-                      title="Modalità creazione contenuti"
-                      txt="Fatti scoprire, metti in risalto i contenuti sul tuo profilo e accedi agli strumenti di creazione"
-                      badge="no"
-                    />
-                    <CardListItem
-                      icon="bi-people-fill"
-                      title="La mia rete"
-                      txt="Salva e gestisci i tuoi collegamenti e interessi."
-                    />
-                  </ul>
-                </div>
-                <div className="card-footer bg-white text-body text-center">
-                  <Link to="/" className="text-secondary text-decoration-none">
-                    Mostra tutte le risorse <i className="bi bi-arrow-right"></i>
-                  </Link>
-                </div>
-              </div>
-              <div className="card mt-2">
-                <div className="card-body">
-                  <CardTitle title="Attività" />
-                  <ul className="list-unstyled">
-                    <CardListItem
-                      title="Modalità creazione contenuti"
-                      txt="Fatti scoprire, metti in risalto i contenuti sul tuo profilo e accedi agli strumenti di creazione"
-                    />
-                  </ul>
-                </div>
-                <div className="card-footer bg-white text-body text-center">
-                  <Link to="/" className="text-secondary text-decoration-none">
-                    Mostra tutte le attività <i className="bi bi-arrow-right"></i>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-        <aside className="col-3">
-          <AsideBox title="Persone che potresti conoscere" />
-        </aside> */}
         <div className=" col-12 col-md-4 col-lg-3 col-xl-3">
           <div className="card">
             <div>
-              {" "}
-              {userData.image ? (
+              {userData && userData.image ? (
                 <img className="card-img-top" src={userData.image} />
               ) : (
-                <i class="bi bi-camera"></i>
-              )}{" "}
+                <i className="bi bi-camera"></i>
+              )}
             </div>
             <div className="card-body">
-              <h5 className="card-title">Ti diamo il benvenuto {`${userData.name}`}!</h5>
+              <h5 className="card-title">Ti diamo il benvenuto {userData && userData.name}!</h5>
               <Link to="/" data-bs-toggle="modal" data-bs-target="#UploadPhotoProfile">
                 Aggiungi una foto
               </Link>
@@ -117,7 +46,7 @@ const Home = () => {
                       fontSize: "small",
                       maxWidth: "125px",
                       textDecoration: "underline",
-                      lineHeight: "15px",
+                      lineHeight: "15px"
                     }}
                   >
                     Prova Premium gratuitamente
@@ -135,11 +64,11 @@ const Home = () => {
               </a>
             </div>
           </div>
-          <div class="card mt-2 sticky-top">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Gruppi</li>
-              <li class="list-group-item">Eventi</li>
-              <li class="list-group-item">Hashtag seguiti</li>
+          <div className="card mt-2 sticky-top">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Gruppi</li>
+              <li className="list-group-item">Eventi</li>
+              <li className="list-group-item">Hashtag seguiti</li>
             </ul>
           </div>
         </div>
@@ -147,14 +76,21 @@ const Home = () => {
         <div className=" col-12 col-md-8 col-lg-6">
           <div className="card mb-3">
             <div className="card-body">
-              <div className="d-flex mb-3">
+              <div className="d-flex mb-3 align-items-center">
                 <img
                   src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                   alt="Vai al profilo di mauro simoni"
                   className="photo-circle flex-shrink-0"
                 />
-                <button className="rounded-pill flex-grow-1" data-bs-toggle="modal" data-bs-target="#PostsForm">
+                <button
+                  className="rounded-pill flex-grow-1 mx-2 py-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#PostsForm"
+                >
                   Avvia un post
+                </button>
+                <button className="btn btn-linkedin rounded-circle" onClick={() => dispatch(getUserPosts())}>
+                  <i class="bi bi-arrow-repeat"></i>
                 </button>
               </div>
               <div className="d-flex justify-content-between">
@@ -177,8 +113,8 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          {posts.map((post) => (
+          <Pagination total={posts.length} start={start} stop={stop} setStart={setStart} setStop={setStop} />
+          {posts.slice(start, stop).map((post) => (
             <PostCard key={post._id} edit post={post} setId={setSelectedId} />
           ))}
           <PostsModal id={selectedId} />
@@ -189,14 +125,14 @@ const Home = () => {
             <AsideBox title="Persone che potresti conoscere" />
           </aside> */}
 
-          <div class="card">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">An item</li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A third item</li>
-              <li class="list-group-item">A third item</li>
+          <div className="card">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">An item</li>
+              <li className="list-group-item">A second item</li>
+              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">A third item</li>
+              <li className="list-group-item">A third item</li>
             </ul>
           </div>
           <img

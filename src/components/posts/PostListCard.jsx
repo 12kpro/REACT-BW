@@ -1,7 +1,7 @@
 const PostListCard = ({ post, edit, setId }) => {
   return (
-    <div className=" border-bottom py-3 ">
-      <div className="d-flex ps-1 ">
+    <li className=" border-bottom py-3 ">
+      <div className="d-flex">
         <h3 className="fs-6 footer-links m-0 flex-grow-1">
           {post.user && (
             <>
@@ -11,11 +11,16 @@ const PostListCard = ({ post, edit, setId }) => {
         </h3>
         {edit && (
           <>
-            <button className="btn" data-bs-toggle="modal" data-bs-target="#PostsForm" onClick={() => setId(post._id)}>
+            <button
+              className="btn btn-linkedin rounded-circle"
+              data-bs-toggle="modal"
+              data-bs-target="#PostsForm"
+              onClick={() => setId(post._id)}
+            >
               <i className="bi bi-pencil"></i>
             </button>
             <button
-              className="btn"
+              className="btn btn-linkedin rounded-circle"
               data-bs-toggle="modal"
               data-bs-target="#UploadPhoto"
               onClick={() => setId(post._id)}
@@ -25,9 +30,16 @@ const PostListCard = ({ post, edit, setId }) => {
           </>
         )}
       </div>
-      <div className="text-center">{post.text}</div>
+      <p className="card-text small">
+        {new Date(post.updatedAt).toLocaleDateString("it-IT", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        })}
+      </p>
+      <div className="card-text">{post.text}</div>
       {post.image && <img src={post.image} className="img-fluid" />}
-    </div>
+    </li>
   );
 };
 export default PostListCard;

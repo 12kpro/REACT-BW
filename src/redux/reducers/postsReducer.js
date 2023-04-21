@@ -5,7 +5,7 @@ const postsDataReducer = (state = [], action) => {
     case GET_USER_POSTS:
       return action.payload;
     case POST_USER_POST:
-      return [...state, action.payload];
+      return [action.payload, ...state];
     case PUT_USER_POST:
       return state.map((post) => {
         if (post._id !== action.id) {
