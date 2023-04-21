@@ -167,7 +167,7 @@ const SiteNav = () => {
             </Link>
             <ul class="dropdown-menu">
               <li>
-                <Link class="dropdown-item" to="/">
+                <Link class="dropdown-item" to="/profile">
                   Profilo
                 </Link>
               </li>
