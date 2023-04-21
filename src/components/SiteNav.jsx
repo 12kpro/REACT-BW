@@ -53,7 +53,18 @@ const SiteNav = () => {
         <ul class="nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <Link className="nav-link text-decoration-none text-center" to="/">
-              <i class="bi bi-house-door-fill"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                data-supported-dps="24x24"
+                fill="currentColor"
+                class="mercado-match"
+                width="24"
+                height="24"
+                focusable="false"
+              >
+                <path d="M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"></path>
+              </svg>
               <div className="small d-none d-lg-block"> Home</div>
             </Link>
           </li>
