@@ -18,13 +18,13 @@ const Jobs = () => {
     { icon: "bi-bell-fill", text: "Avvisi offerte di lavoro" },
     { icon: "bi-journal-check", text: "Valutazioni delle competenze" },
     { icon: "bi-play-btn-fill", text: "Indicazioni per chi cerca" },
-    { icon: "bi-gear-fill", text: "Impostazioni candidatura" }
+    { icon: "bi-gear-fill", text: "Impostazioni candidatura" },
   ];
 
   return (
     <div className="container">
       <div className="row">
-        <div className=" col-3">
+        <div className=" col-12 col-md-4 col-lg-3 col-xl-3">
           <div className="card sticky-top">
             <ul className="list-group list-group-flush">
               {menuLink.map((item, i) => (
@@ -38,7 +38,7 @@ const Jobs = () => {
             </ul>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-md-8 col-lg-6">
           <div className="card mb-4">
             <div className="card-body">
               <h3>Seleziona tipo di ricerca</h3>
@@ -92,7 +92,7 @@ const Jobs = () => {
             <JobCard back details job={items[0]} />
           )}
         </div>
-        <div className=" col-3">
+        <div className=" col-12 col-lg-3 col-xl-3">
           <BookmarksCard />
         </div>
       </div>
