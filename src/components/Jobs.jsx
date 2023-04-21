@@ -37,6 +37,9 @@ const Jobs = () => {
               ))}
             </ul>
           </div>
+          <div className="jobs-offerte">
+            <BookmarksCard />
+          </div>
         </div>
         <div className="col-12 col-md-8 col-lg-6">
           <div className="card mb-4">
@@ -93,7 +96,120 @@ const Jobs = () => {
           )}
         </div>
         <div className=" col-12 col-lg-3 col-xl-3">
-          <BookmarksCard />
+          <div className="sticky-top">
+            <div className="d-flex justify-content-center">
+              <div className="mx-3">
+                <Link to="/" alt="footer link" className="footer-links">
+                  Informazioni
+                </Link>
+              </div>
+              <div>
+                <Link to="/" alt="footer link" className="footer-links">
+                  Accessibilità
+                </Link>
+              </div>
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className="mx-2">
+                <Link to="/" alt="footer link" className="footer-links">
+                  Centro Assistenza
+                </Link>
+              </div>
+              <div>
+                <div className="dropdown">
+                  <button
+                    className="btn bg-trasparent btn-sm dropdown-toggle p-0 m-0 footer-links"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Privacy e Condizioni
+                  </button>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Informativa sulla privacy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Contratto di licenza
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Informativa sui cookie
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Informativa sul copyright
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <Link to="/" alt="footer link" className="footer-links">
+                Opzioni per gli annunci pubblicitari
+              </Link>
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className="mx-3">
+                <Link to="/" alt="footer link" className="footer-links">
+                  Pubblicità
+                </Link>
+              </div>
+              <div>
+                <div className="dropdown">
+                  <button
+                    className="btn bg-trasparent btn-sm dropdown-toggle p-0 m-0 footer-links"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Servizi alle aziende
+                  </button>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Informativa sulla privacy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Contratto di licenza
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Informativa sui cookie
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item " to="/">
+                        Informativa sul copyright
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className="mx-3">
+                <Link to="/" alt="footer link" className="footer-links">
+                  Scarica l'app Linkedin
+                </Link>
+              </div>
+              <div>
+                <Link to="/" alt="footer link" className="footer-links">
+                  Altro
+                </Link>
+              </div>
+            </div>
+            <div className="text-center mb-2 mt-2 fw-light copyright"> Linkedin Corporation © 2023</div>
+          </div>
         </div>
       </div>
     </div>
